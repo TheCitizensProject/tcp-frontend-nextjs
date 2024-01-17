@@ -1,86 +1,65 @@
-"use client";
-
-import React, { ReactNode, useState } from "react";
+import React from "react";
 import Ferry from "./component/Ferry";
 import Trains from "./component/Trains";
 import Tram from "./component/Tram";
-import {
-  MdAccessibleForward,
-  MdArrowBackIosNew,
-  MdArrowForwardIos,
-  MdStore,
-} from "react-icons/md";
-import { CiKeyboard } from "react-icons/ci";
-import { TbAlertCircleFilled, TbDeviceIpad, TbPencil } from "react-icons/tb";
-import { TiWeatherPartlySunny } from "react-icons/ti";
+import TransitHeader from "./component/TransitHeader";
+import revalidateTransitData from "@/app/serverActions";
+import RevalidatorHOC from "@/app/component/Revalidator";
 
-const Page = () => {
+/**
+ * Happy path works. 
+ * Needs to handle error path.
+ */
+
+type TransitTimeDataType = Array<string | number>;
+export type TransitDataType = {
+  error: unknown,
+  data: {
+    data: {
+      ferry_times: TransitTimeDataType[],
+      both_directions: TransitTimeDataType[],
+      tram_times: TransitTimeDataType[],
+    },
+    detail: "Not Found",
+  }[],
+}
+
+export type TransitProps = {
+  transitData: TransitDataType
+}
+const fetchTransitData = async () => {
+  try {
+    const urls = [
+      `${process.env.AWS_API_URL}/get-ferry-time`,
+      `${process.env.AWS_API_URL}/get-station-time-unified/B06`,
+      `${process.env.AWS_API_URL}/get-tram-time`,
+    ];
+
+    const responses = await Promise.all(
+      urls.map(url => fetch(url, { next: { tags: ['transit-data'] }}))
+    );
+    const data = await Promise.all(responses.map(response => response.json()));
+
+    return { data, error: null };
+  } catch (error) {
+    console.error("error fetching transit data: ", error);
+    return { data: null, error };
+  }
+};
+
+const Page = async () => {
+  const transitData = await fetchTransitData();
+  
   return (
     <div className="mx-4 mt-10">
-      <Header />
-      <Ferry />
-      <Trains />
-      <Tram />
+      <RevalidatorHOC revalidateFuncion={revalidateTransitData}>
+        <TransitHeader />
+        <Ferry transitData={transitData as TransitDataType}/>
+        <Trains transitData={transitData as TransitDataType}/>
+        <Tram transitData={transitData as TransitDataType}/>
+      </RevalidatorHOC>
     </div>
   );
 };
 
 export default Page;
-
-type HeaderContentType = {
-  icon: ReactNode;
-  text: string;
-};
-const headerContents: HeaderContentType[] = [
-  { icon: <CiKeyboard className="w-8 h-8" />, text: "Keyboard" },
-  { icon: <TbPencil className="w-8 h-8" />, text: "Pencil" },
-  { icon: <MdAccessibleForward className="w-8 h-8" />, text: "Accessories" },
-  { icon: <TbDeviceIpad className="w-8 h-8" />, text: "IpadIOS" },
-  { icon: <TbAlertCircleFilled className="w-8 h-8" />, text: "Alerts" },
-  { icon: <TiWeatherPartlySunny className="w-8 h-8" />, text: "Weather" },
-  { icon: <MdStore className="w-8 h-8" />, text: "Store" },
-];
-function Header() {
-  const [startIndex, setStartIndex] = useState(0);
-  const [endIndex, setEndIndex] = useState(3);
-  return (
-    <div
-      className="flex items-center justify-center
-     mt-4 mb-10 gap-8 w-full"
-    >
-      <div className="w-1/12 grow">
-        <MdArrowBackIosNew
-          className="w-8 h-8"
-          onClick={() => {
-            if (startIndex > 0) {
-              setStartIndex((prv) => prv - 3);
-              setEndIndex((prv) => prv - 3);
-            }
-          }}
-        />
-      </div>
-      <div className="flex justify-between grow w-10/12 overflow-hidden">
-        {headerContents.slice(startIndex, endIndex).map((content) => (
-          <div
-            key={content.text}
-            className="flex flex-col items-center justify-center"
-          >
-            {content.icon}
-            <span>{content.text}</span>
-          </div>
-        ))}
-      </div>
-      <div className="w-1/12 grow flex justify-end">
-        <MdArrowForwardIos
-          className="w-8 h-8"
-          onClick={() => {
-            if (endIndex <= headerContents.length - 1) {
-              setStartIndex((prv) => prv + 3);
-              setEndIndex((prv) => prv + 3);
-            }
-          }}
-        />
-      </div>
-    </div>
-  );
-}
