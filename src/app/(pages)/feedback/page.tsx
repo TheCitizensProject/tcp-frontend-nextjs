@@ -1,45 +1,130 @@
-import Image from "next/image";
-import { IconType } from "react-icons";
-import { FiThumbsDown, FiThumbsUp } from "react-icons/fi";
-import { services } from "./data/services";
-import { events } from "./data/events";
-import EventComponent from "../events/component/EventComponent";
-import ServiceComponent from "./components/ServiceComponent";
+"use client";
 
-export type ServiceType = {
-  icon: IconType;
-  title: string;
+import { MouseEventHandler, useState } from "react";
+import { BsBag, BsTrash } from "react-icons/bs";
+import { CiBullhorn } from "react-icons/ci";
+import { FaTheaterMasks } from "react-icons/fa";
+import { PiTrafficSignal, PiTrain, PiTreeLight } from "react-icons/pi";
+import { RiShieldStarLine } from "react-icons/ri";
+import Rating from "./components/Rating";
+import Divider from "./components/Divider";
+
+export type RatingCriteria = {
+  overall: number;
+  businessAndConsumers: number;
+  publicSafety: number;
+  transportation: number;
+  cultureAndRecreation: number;
+  trashAndRecycling: number;
+  environment: number;
+  sidewalksStreetsHighways: number;
+  noise: number;
 };
-const page = () => {
+
+export default function page() {
+  const [ratings, setRatings] = useState<RatingCriteria>({
+    overall: 0,
+    businessAndConsumers: 0,
+    publicSafety: 0,
+    transportation: 0,
+    cultureAndRecreation: 0,
+    trashAndRecycling: 0,
+    environment: 0,
+    sidewalksStreetsHighways: 0,
+    noise: 0,
+  });
+
+  const getCurrentRating = (key: keyof RatingCriteria) => {
+    return ratings[key];
+  };
+
+  const handleNewRating = (key: keyof RatingCriteria, newRating: number) => {
+    setRatings({ ...ratings, [key]: newRating });
+  };
+
+  // TODO: call API to submit data
+  const handleSubmit: MouseEventHandler<HTMLButtonElement> = (e) => {
+    e.preventDefault();
+    console.log(ratings);
+  };
+
   return (
-    <div>
-      <h1 className="text-xl font-bold mx-4">Organization A</h1>
-      <div className="bg-stone-200 py-2 px-4 text-xl mt-4">
-        Visitor Feedback
-      </div>
-      <div className="flex m-4">
-        <div className="flex items-center mr-4">
-          <FiThumbsUp className="w-8 h-8" />
-          <span className="ml-1 text-xl">83%</span>
-        </div>
-        <div className="flex items-center ">
-          <FiThumbsDown className="w-8 h-8" />
-          <span className="ml-1 text-xl">17%</span>
-        </div>
-      </div>
-      <div className="relative w-full h-40 mt-4">
-        <Image src={"/feedback.png"} alt="feedback" fill />
-      </div>
-      <div className="bg-stone-200 py-2 px-4 text-xl mt-4">Your Services</div>
-      {services.map((serv) => (
-        <ServiceComponent key={serv.title} service={serv} />
-      ))}
-      <div className="bg-stone-200 py-2 px-4 text-xl mt-4">Your Events</div>
-      {events.map((event) => (
-        <EventComponent key={event.id} event={event} />
-      ))}
+    <div className="flex flex-col w-full space-y-4 mb-4">
+      <Divider />
+      <Rating
+        title="OVERALL"
+        ratingCriterion="overall"
+        getCurrentRating={getCurrentRating}
+        handleNewRating={handleNewRating}
+      />
+      <Divider />
+      <Rating
+        icon={<BsBag />}
+        title="Business & Consumers"
+        ratingCriterion="businessAndConsumers"
+        getCurrentRating={getCurrentRating}
+        handleNewRating={handleNewRating}
+      />
+      <Divider />
+      <Rating
+        icon={<RiShieldStarLine />}
+        title="Public Safety"
+        ratingCriterion="publicSafety"
+        getCurrentRating={getCurrentRating}
+        handleNewRating={handleNewRating}
+      />
+      <Divider />
+      <Rating
+        icon={<PiTrain />}
+        title="Transportation"
+        ratingCriterion="transportation"
+        getCurrentRating={getCurrentRating}
+        handleNewRating={handleNewRating}
+      />
+      <Divider />
+      <Rating
+        icon={<FaTheaterMasks />}
+        title="Culture & Recreation"
+        ratingCriterion="cultureAndRecreation"
+        getCurrentRating={getCurrentRating}
+        handleNewRating={handleNewRating}
+      />
+      <Divider />
+      <Rating
+        icon={<BsTrash />}
+        title="Trash & Recycling"
+        ratingCriterion="trashAndRecycling"
+        getCurrentRating={getCurrentRating}
+        handleNewRating={handleNewRating}
+      />
+      <Divider />
+      <Rating
+        icon={<PiTreeLight />}
+        title="Environment"
+        ratingCriterion="environment"
+        getCurrentRating={getCurrentRating}
+        handleNewRating={handleNewRating}
+      />
+      <Divider />
+      <Rating
+        icon={<PiTrafficSignal />}
+        title="Sidewalks, Streets, Highways"
+        ratingCriterion="sidewalksStreetsHighways"
+        getCurrentRating={getCurrentRating}
+        handleNewRating={handleNewRating}
+      />
+      <Divider />
+      <Rating
+        icon={<CiBullhorn />}
+        title="Noise"
+        ratingCriterion="noise"
+        getCurrentRating={getCurrentRating}
+        handleNewRating={handleNewRating}
+      />
+      <Divider />
+      <button className="w-fit m-auto border-2 border-gray-600 px-4 py-1 rounded-full" onClick={handleSubmit}>
+        <p className="uppercase font-semibold">Submit</p>
+      </button>
     </div>
   );
-};
-
-export default page;
+}
