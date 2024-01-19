@@ -4,7 +4,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 First, create an `.env.local` file. We will store all environment variables here. This file is `.gitignore`d. Add the following in the file:
 ```
-AWS_API_URL=https://x776xfsi68.execute-api.us-east-1.amazonaws.com/api
+TRANSIT_API_URL=https://x776xfsi68.execute-api.us-east-1.amazonaws.com/api
 ```
 
 Second, run the development server:

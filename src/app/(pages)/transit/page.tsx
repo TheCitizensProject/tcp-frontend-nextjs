@@ -30,9 +30,9 @@ export type TransitProps = {
 const fetchTransitData = async () => {
   try {
     const urls = [
-      `${process.env.AWS_API_URL}/get-ferry-time`,
-      `${process.env.AWS_API_URL}/get-station-time-unified/B06`,
-      `${process.env.AWS_API_URL}/get-tram-time`,
+      `${process.env.TRANSIT_API_URL}/get-ferry-time`,
+      `${process.env.TRANSIT_API_URL}/get-station-time-unified/B06`,
+      `${process.env.TRANSIT_API_URL}/get-tram-time`,
     ];
 
     const responses = await Promise.all(
