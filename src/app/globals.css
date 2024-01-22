@@ -26,6 +26,100 @@
     rgb(var(--background-start-rgb));
 } */
 
-.home-screen{
-  height: calc(100vh - 50px);
+@layer components {
+
+  .home-screen{
+    height: calc(100vh - 50px);
+  }
+  
+  /* css coming form https://dev.to/grahamthedev/5-star-rating-system-actually-accessible-no-js-no-wai-aria-3idl */
+  .star-rating{
+    width: min-content;
+    padding: 0.3rem;
+  }
+  
+  .star-rating>div {
+    position: relative;
+    height: 3rem;
+    width: 15rem;
+    display: flex;
+  }
+  
+  .star-rating label {
+    height: 100%;
+    background-size: 3rem 3rem;
+    @apply max-[325px]:mr-[5px] mr-[15px]
+  }
+  
+  .star-rating label:nth-of-type(1) {
+    z-index: 10;
+    width: 3rem;
+  }
+  
+  .star-rating label:nth-of-type(2) {
+    z-index: 9;
+    width: 6rem;
+  }
+  
+  .star-rating label:nth-of-type(3) {
+    z-index: 8;
+    width: 9rem;
+  }
+  
+  .star-rating label:nth-of-type(4) {
+    z-index: 7;
+    width: 12rem;
+  }
+  
+  .star-rating label:nth-of-type(5) {
+    z-index: 6;
+    width: 25rem;
+  }
+  
+  .star-rating label:nth-of-type(6) {
+    z-index: 5;
+    width: 30rem;
+  }
+  
+  .star-rating label:nth-of-type(7) {
+    z-index: 4;
+    width: 35rem;
+  }
+  
+  .star-rating label:nth-of-type(8) {
+    z-index: 3;
+    width: 40rem;
+  }
+  
+  .star-rating label:nth-of-type(9) {
+    z-index: 2;
+    width: 45rem;
+  }
+  
+  .star-rating label:nth-of-type(10) {
+    z-index: 1;
+    width: 50rem;
+  }
+            
+  .star-rating input:focus + label{
+    outline: 0.25rem solid lightblue;
+  }
+  
+  .star-rating input{
+    position: absolute;
+    height: 1px; 
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px 1px 1px 1px); /* IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box */
+    clip: rect(1px, 1px, 1px, 1px); /*maybe deprecated but we need to support legacy browsers */
+    clip-path: inset(50%); /*modern browsers, clip-path works inwards from each corner*/
+    white-space: nowrap; 
+  }
+  .star-rating input,
+  .star-rating label>span{
+    border: 0;
+    padding: 0;
+    margin: 0;
+    white-space: nowrap; /* added line to stop words getting smushed together (as they go onto seperate lines and some screen readers do not understand line feeds as a space */
+  }
 }

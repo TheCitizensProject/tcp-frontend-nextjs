@@ -18,17 +18,18 @@ function Tram({ transitData }: TransitProps) {
     */
 
   return (
-    <div>
-      {tramError && <p>Error: {tramError}</p>}
+    <>
       {tramData[2].data.tram_times.map((items: any) => (
-        <TransitCard 
-          key={items[1] + items[0]} 
-          time={items[1]} 
-          direction={items[0]} 
-          train="tram" 
-        />
+        <li key={items[1] + items[0]}>
+          {tramError && <p>Error: {tramError}</p>}
+          <TransitCard 
+            time={items[1]} 
+            direction={items[0]} 
+            train="tram" 
+          />
+        </li>
       ))}
-    </div>
+    </>
   );
 }
 
