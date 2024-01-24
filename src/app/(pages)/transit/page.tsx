@@ -54,9 +54,11 @@ const Page = async () => {
     <div className="mx-4 mt-10">
       <RevalidatorHOC revalidateFuncion={revalidateTransitData}>
         <TransitHeader />
-        <Ferry transitData={transitData as TransitDataType}/>
-        <Trains transitData={transitData as TransitDataType}/>
-        <Tram transitData={transitData as TransitDataType}/>
+        <ul>
+          <Ferry transitData={transitData as TransitDataType}/>
+          <Trains transitData={transitData as TransitDataType}/>
+          <Tram transitData={transitData as TransitDataType}/>
+        </ul>
       </RevalidatorHOC>
     </div>
   );

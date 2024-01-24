@@ -27,14 +27,15 @@ function Trains({ transitData }: TransitProps) {
 
   return (
     <>
-      {trainError && <p>Error: {trainError}</p> }
       {trainData[1]?.data?.both_directions.map((items: any) => (
-        <TransitCard
-          key={items[0] + items[1]}
-          train={items[0]}
-          time={items[1]}
-          direction={items[2]}
-        />
+        <li key={items[0] + items[1]}>
+          {trainError && <p>Error: {trainError}</p> }
+          <TransitCard
+            train={items[0]}
+            time={items[1]}
+            direction={items[2]}
+          />
+        </li>
       ))}
     </>
   );
