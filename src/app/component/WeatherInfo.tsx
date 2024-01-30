@@ -17,7 +17,7 @@ export default async function WeatherInfo() {
   return (
     <div data-testid="weatherInfoComponent" className="mr-4 flex items-center max-sm:text-xs">
       <span className="w-8 h-8 min-sm:mr-2"><img src={iconLink} alt="No icon"/></span>
-      <span data-testid="weatherInfo" className="max-[400px]:flex-col flex"><span>{wData.data.temp_f},</span> <span>{wData.data.condition}</span></span>
+      <span data-testid="weatherInfo" className="max-[400px]:flex-col flex"><span>{wData.data.temp_f},{wData.data.condition}</span></span>
     </div>
   );
 }
