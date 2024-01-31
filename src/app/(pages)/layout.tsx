@@ -19,6 +19,7 @@ export default function PageLayout({
     <html lang="en">
       <body>
         <Header />
+        <div id="top-page-alert"/>
         <PageHeader />
         {children}
       </body>

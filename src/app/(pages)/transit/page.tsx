@@ -45,17 +45,13 @@ const fetchTransitData = async () => {
     return { data, error: null };
   } catch (error) {
     console.error("error fetching transit data: ", error);
-    return { data: null, error: true };
+    throw new Error("error fetching transit data");
   }
 };
 
 // should display a refresh button with an outlined border. It should call the revalidateTransitData() function
 const Page = async () => {
   const transitData = await fetchTransitData();
-
-  if (transitData.error) {
-    throw new Error();
-  }
   
   return (
     <div className="mx-4 mt-10">

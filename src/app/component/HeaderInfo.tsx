@@ -6,7 +6,7 @@ const HeaderInfo = () => {
   return (
     <div
       data-testid="headerInfo"
-      className="flex my-2 py-3 border-b border-stone-400 relative border-t border-t-gray-200"
+      className="flex mt-2 py-3 border-b border-stone-400 relative border-t border-t-gray-200"
     >
       <Alert />
       <div

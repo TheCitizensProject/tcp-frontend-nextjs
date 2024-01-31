@@ -1,4 +1,4 @@
-'use client' // Error components must be Client Components
+'use client';
  
 import { useEffect } from 'react'
 import TransitHeader from './component/TransitHeader'
@@ -6,16 +6,16 @@ import { BiError } from "react-icons/bi";
  
 export default function Error({
   error,
-  reset,
+  _,
 }: {
   error: Error & { digest?: string }
-  reset: () => void
+  _: () => void
 }) {
   useEffect(() => {
     // Log the error to an error reporting service
     console.error(error)
   }, [error])
-
+  
   return (
     <div className="mx-4 mt-10">
       <TransitHeader />
