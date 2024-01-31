@@ -15,8 +15,12 @@ function RevalidatorHOC({ revalidateFuncion, children }: RevalidatorHOCProps) {
     const refreshWindow = (1 / 2) * min;
     const interval = refreshWindow * 1000; //1000 is the constant
     const intervalId = setInterval(updateViews, interval);
-
-    updateViews();
+    try{
+      updateViews();
+    } catch (e) {
+      debugger
+      console.log("failed to revalidate", e)
+    }
 
     // Cleanup to clear interval when component unmounts
     return () => {
