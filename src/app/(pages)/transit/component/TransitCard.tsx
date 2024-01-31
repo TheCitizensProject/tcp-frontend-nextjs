@@ -25,24 +25,22 @@ function TransitCard({ train, time, direction }: any) {
   if (train === "F") imageSrc = "/f-letter.png";
 
   return (
-    <React.Fragment>
-      <div
-        className="flex items-center justify-between my-4 pb-4
-      border-b border-stone-400"
-      >
-        <div className="flex items-center">
-          <div>
-            <Image src={imageSrc} width={50} height={50} alt={direction} />
-          </div>
-          <div className="ml-4">
-            <p className="font-bold">{direction}</p>
-          </div>
-        </div>
+    <div
+      className="flex items-center justify-between my-4 pb-4
+    border-b border-stone-400"
+    >
+      <div className="flex items-center">
         <div>
-          <span className="font-bold mr-1"> {`${time} mins`}</span>
+          <Image src={imageSrc} width={50} height={50} alt={direction} />
+        </div>
+        <div className="ml-4">
+          <p className="font-bold">{direction}</p>
         </div>
       </div>
-    </React.Fragment>
+      <div>
+        <span className="font-bold mr-1"> {`${time} mins`}</span>
+      </div>
+    </div>
   );
 }
 

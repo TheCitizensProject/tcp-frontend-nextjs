@@ -19,9 +19,11 @@ function Ferry({ transitData }: TransitProps) {
 
   return (
     <>
-      {ferryError && <p>Error: {ferryError}</p> }
       {data[0]?.data?.ferry_times.map((items: any) => (
-        <TransitCard key={items[1] + items[3]} time={items[3]} direction={items[1]} train="ferry" />
+        <li key={items[1] + items[3]}>
+          {ferryError && <p>Error: {ferryError}</p> }
+          <TransitCard time={items[3]} direction={items[1]} train="ferry" />
+        </li>
       ))}
     </>
   );

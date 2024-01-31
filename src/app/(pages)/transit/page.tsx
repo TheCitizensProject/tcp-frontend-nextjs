@@ -5,6 +5,7 @@ import Tram from "./component/Tram";
 import TransitHeader from "./component/TransitHeader";
 import revalidateTransitData from "@/app/serverActions";
 import RevalidatorHOC from "@/app/component/Revalidator";
+import { BiError } from "react-icons/bi";
 
 /**
  * Happy path works. 
@@ -29,6 +30,7 @@ export type TransitProps = {
 }
 const fetchTransitData = async () => {
   try {
+    // throw new Error()
     const urls = [
       `${process.env.TRANSIT_API_URL}/get-ferry-time`,
       `${process.env.TRANSIT_API_URL}/get-station-time-unified/B06`,
@@ -43,10 +45,11 @@ const fetchTransitData = async () => {
     return { data, error: null };
   } catch (error) {
     console.error("error fetching transit data: ", error);
-    return { data: null, error };
+    throw new Error("error fetching transit data");
   }
 };
 
+// should display a refresh button with an outlined border. It should call the revalidateTransitData() function
 const Page = async () => {
   const transitData = await fetchTransitData();
   
@@ -54,9 +57,11 @@ const Page = async () => {
     <div className="mx-4 mt-10">
       <RevalidatorHOC revalidateFuncion={revalidateTransitData}>
         <TransitHeader />
-        <Ferry transitData={transitData as TransitDataType}/>
-        <Trains transitData={transitData as TransitDataType}/>
-        <Tram transitData={transitData as TransitDataType}/>
+        <ul>
+          <Ferry transitData={transitData as TransitDataType}/>
+          <Trains transitData={transitData as TransitDataType}/>
+          <Tram transitData={transitData as TransitDataType}/>
+        </ul>
       </RevalidatorHOC>
     </div>
   );
