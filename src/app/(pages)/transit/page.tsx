@@ -7,26 +7,26 @@ import revalidateTransitData from "@/app/serverActions";
 import RevalidatorHOC from "@/app/component/Revalidator";
 
 /**
- * Happy path works. 
+ * Happy path works.
  * Needs to handle error path.
  */
 
 type TransitTimeDataType = Array<string | number>;
 export type TransitDataType = {
-  error: unknown,
+  error: unknown;
   data: {
     data: {
-      ferry_times: TransitTimeDataType[],
-      both_directions: TransitTimeDataType[],
-      tram_times: TransitTimeDataType[],
-    },
-    detail: "Not Found",
-  }[],
-}
+      ferry_times: TransitTimeDataType[];
+      both_directions: TransitTimeDataType[];
+      tram_times: TransitTimeDataType[];
+    };
+    detail: "Not Found";
+  }[];
+};
 
 export type TransitProps = {
-  transitData: TransitDataType
-}
+  transitData: TransitDataType;
+};
 const fetchTransitData = async () => {
   try {
     const urls = [
@@ -36,9 +36,11 @@ const fetchTransitData = async () => {
     ];
 
     const responses = await Promise.all(
-      urls.map(url => fetch(url, { next: { tags: ['transit-data'] }}))
+      urls.map((url) => fetch(url, { next: { tags: ["transit-data"] } }))
     );
-    const data = await Promise.all(responses.map(response => response.json()));
+    const data = await Promise.all(
+      responses.map((response) => response.json())
+    );
 
     return { data, error: null };
   } catch (error) {
@@ -49,14 +51,14 @@ const fetchTransitData = async () => {
 
 const Page = async () => {
   const transitData = await fetchTransitData();
-  
+
   return (
     <div className="mx-4 mt-10">
       <RevalidatorHOC revalidateFuncion={revalidateTransitData}>
         <TransitHeader />
-        <Ferry transitData={transitData as TransitDataType}/>
+        {/* <Ferry transitData={transitData as TransitDataType}/>
         <Trains transitData={transitData as TransitDataType}/>
-        <Tram transitData={transitData as TransitDataType}/>
+        <Tram transitData={transitData as TransitDataType}/> */}
       </RevalidatorHOC>
     </div>
   );
