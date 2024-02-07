@@ -31,17 +31,20 @@ export default function TransitHeader() {
       className="flex items-center justify-center
      mt-4 mb-10 gap-8 w-full"
     >
-      <div className="w-1/12 grow">
-        <MdArrowBackIosNew
-          className="w-8 h-8"
-          onClick={() => {
-            if (startIndex > 0) {
-              setStartIndex((prv) => prv - 3);
-              setEndIndex((prv) => prv - 3);
-            }
-          }}
-        />
-      </div>
+      {/* show only when the fourth item is displaying */}
+      {startIndex > 1 && (
+        <div className="w-1/12 grow">
+          <MdArrowBackIosNew
+            className="w-8 h-8"
+            onClick={() => {
+              if (startIndex > 0) {
+                setStartIndex((prv) => prv - 3);
+                setEndIndex((prv) => prv - 3);
+              }
+            }}
+          />
+        </div>
+      )}
       <div className="flex justify-between grow w-10/12 overflow-hidden">
         {headerContents.slice(startIndex, endIndex).map((content) => (
           <div
@@ -53,17 +56,20 @@ export default function TransitHeader() {
           </div>
         ))}
       </div>
-      <div className="w-1/12 grow flex justify-end">
-        <MdArrowForwardIos
-          className="w-8 h-8"
-          onClick={() => {
-            if (endIndex <= headerContents.length - 1) {
-              setStartIndex((prv) => prv + 3);
-              setEndIndex((prv) => prv + 3);
-            }
-          }}
-        />
-      </div>
+      {/* show only when the last three items are not displaying */}
+      {endIndex < headerContents.length && (
+        <div className="w-1/12 grow flex justify-end">
+          <MdArrowForwardIos
+            className="w-8 h-8"
+            onClick={() => {
+              if (endIndex <= headerContents.length - 1) {
+                setStartIndex((prv) => prv + 3);
+                setEndIndex((prv) => prv + 3);
+              }
+            }}
+          />
+        </div>
+      )}
     </div>
   );
 }
