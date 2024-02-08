@@ -65,3 +65,54 @@ export const onDeleteEvent = /* GraphQL */ `subscription OnDeleteEvent($filter: 
   APITypes.OnDeleteEventSubscriptionVariables,
   APITypes.OnDeleteEventSubscription
 >;
+export const onCreateRIOCAlertData = /* GraphQL */ `subscription OnCreateRIOCAlertData(
+  $filter: ModelSubscriptionRIOCAlertDataFilterInput
+) {
+  onCreateRIOCAlertData(filter: $filter) {
+    id
+    PublishTime
+    subject
+    message_body
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedSubscription<
+  APITypes.OnCreateRIOCAlertDataSubscriptionVariables,
+  APITypes.OnCreateRIOCAlertDataSubscription
+>;
+export const onUpdateRIOCAlertData = /* GraphQL */ `subscription OnUpdateRIOCAlertData(
+  $filter: ModelSubscriptionRIOCAlertDataFilterInput
+) {
+  onUpdateRIOCAlertData(filter: $filter) {
+    id
+    PublishTime
+    subject
+    message_body
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedSubscription<
+  APITypes.OnUpdateRIOCAlertDataSubscriptionVariables,
+  APITypes.OnUpdateRIOCAlertDataSubscription
+>;
+export const onDeleteRIOCAlertData = /* GraphQL */ `subscription OnDeleteRIOCAlertData(
+  $filter: ModelSubscriptionRIOCAlertDataFilterInput
+) {
+  onDeleteRIOCAlertData(filter: $filter) {
+    id
+    PublishTime
+    subject
+    message_body
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedSubscription<
+  APITypes.OnDeleteRIOCAlertDataSubscriptionVariables,
+  APITypes.OnDeleteRIOCAlertDataSubscription
+>;
