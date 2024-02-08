@@ -1,8 +1,7 @@
-"use client";
 import React from "react";
 import HeaderInfo from "./HeaderInfo";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 export default function Header() {
   return (
     <div data-testid="headerComponent">
@@ -31,28 +30,21 @@ export default function Header() {
 }
 
 export function ProjectTitle() {
-  const router = useRouter();
   return (
-    <div className="flex mx-4 mt-4">
+    <Link href={"/"} className="flex mx-4 mt-4 max-sm:mr-0">
       <Image
         data-testid="logo"
         src={"/tcp-icon.png"}
         width={30}
         height={30}
         alt="The Citicen Project logo"
-        onClick={() => {
-          router.push("/");
-        }}
       />
-      <div
-        onClick={() => {
-          router.push("/");
-        }}
+      <h1
         data-testid="projectTitle"
-        className="text-2xl font-bold ml-2"
+        className="text-2xl font-bold ml-2 max-sm:text-xl max-sm:ml-1"
       >
         ROOSEVELT ISLAND
-      </div>
-    </div>
+      </h1>
+    </Link>
   );
 }

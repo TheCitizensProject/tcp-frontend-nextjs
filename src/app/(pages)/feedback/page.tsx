@@ -49,7 +49,7 @@ export default function page() {
   };
 
   return (
-    <div className="flex flex-col w-full space-y-4 mb-4">
+    <form className="flex flex-col w-full space-y-4 mb-4">
       <Divider />
       <Rating
         title="OVERALL"
@@ -125,6 +125,6 @@ export default function page() {
       <button className="w-fit m-auto border-2 border-gray-600 px-4 py-1 rounded-full" onClick={handleSubmit}>
         <p className="uppercase font-semibold">Submit</p>
       </button>
-    </div>
+    </form>
   );
 }

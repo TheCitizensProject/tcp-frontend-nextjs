@@ -1,6 +1,6 @@
-import { ReactNode, useState } from "react";
-import { BsStarFill } from "react-icons/bs";
+import { ReactNode } from "react";
 import { RatingCriteria } from "../page";
+import StarsRating from "./StarsRating";
 
 interface Props {
   icon?: ReactNode;
@@ -11,8 +11,12 @@ interface Props {
 }
 
 export default function Rating({ icon, title, ratingCriterion, getCurrentRating, handleNewRating }: Props) {
-  const [hoverRating, setHoverRating] = useState<number | undefined>();
-
+  const setNewRating = (newRating: number, ratingCriterion: keyof RatingCriteria) => {
+    return () => {
+      handleNewRating(ratingCriterion, newRating);
+    }
+  }
+  
   return (
     <div className="space-y-4 px-4">
       <div className="flex items-center space-x-4">
@@ -20,23 +24,11 @@ export default function Rating({ icon, title, ratingCriterion, getCurrentRating,
         <h2 className="font-bold text-md">{title}</h2>
       </div>
       <div className="flex text-4xl space-x-4">
-        {[...Array(5)].map((_, index) => {
-          const isEnabled = hoverRating ? index + 1 <= hoverRating : index + 1 <= getCurrentRating(ratingCriterion);
-
-          return (
-            <div
-              key={index}
-              className={isEnabled ? `text-yellow-300` : `text-gray-300`}
-              onClick={() => {
-                handleNewRating(ratingCriterion, index + 1);
-              }}
-              onMouseEnter={() => setHoverRating(index + 1)}
-              onMouseLeave={() => setHoverRating(undefined)}
-            >
-              <BsStarFill />
-            </div>
-          );
-        })}
+        <StarsRating 
+          setNewRating={setNewRating}
+          ratingCriterion={ratingCriterion}
+          getCurrentRating={getCurrentRating}
+        />
       </div>
     </div>
   );
