@@ -74,3 +74,57 @@ export const deleteEvent = /* GraphQL */ `mutation DeleteEvent(
   APITypes.DeleteEventMutationVariables,
   APITypes.DeleteEventMutation
 >;
+export const createRIOCAlertData = /* GraphQL */ `mutation CreateRIOCAlertData(
+  $input: CreateRIOCAlertDataInput!
+  $condition: ModelRIOCAlertDataConditionInput
+) {
+  createRIOCAlertData(input: $input, condition: $condition) {
+    id
+    PublishTime
+    subject
+    message_body
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.CreateRIOCAlertDataMutationVariables,
+  APITypes.CreateRIOCAlertDataMutation
+>;
+export const updateRIOCAlertData = /* GraphQL */ `mutation UpdateRIOCAlertData(
+  $input: UpdateRIOCAlertDataInput!
+  $condition: ModelRIOCAlertDataConditionInput
+) {
+  updateRIOCAlertData(input: $input, condition: $condition) {
+    id
+    PublishTime
+    subject
+    message_body
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.UpdateRIOCAlertDataMutationVariables,
+  APITypes.UpdateRIOCAlertDataMutation
+>;
+export const deleteRIOCAlertData = /* GraphQL */ `mutation DeleteRIOCAlertData(
+  $input: DeleteRIOCAlertDataInput!
+  $condition: ModelRIOCAlertDataConditionInput
+) {
+  deleteRIOCAlertData(input: $input, condition: $condition) {
+    id
+    PublishTime
+    subject
+    message_body
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.DeleteRIOCAlertDataMutationVariables,
+  APITypes.DeleteRIOCAlertDataMutation
+>;
