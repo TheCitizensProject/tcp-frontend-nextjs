@@ -16,8 +16,7 @@ function RevalidatorHOC({ revalidateFuncion, children }: RevalidatorHOCProps) {
 
     const updateViews = async () => {
       if(window.navigator.onLine) {        
-        if (showAlert) setShowAlert(() => false);
-        
+        setShowAlert(false);
         await revalidateFuncion();
       } else {
         console.error("no internet connection");

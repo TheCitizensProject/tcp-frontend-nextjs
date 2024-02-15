@@ -51,44 +51,6 @@ export const listEvents = /* GraphQL */ `query ListEvents(
   APITypes.ListEventsQueryVariables,
   APITypes.ListEventsQuery
 >;
-export const getRIOCAlertData = /* GraphQL */ `query GetRIOCAlertData($id: ID!) {
-  getRIOCAlertData(id: $id) {
-    id
-    PublishTime
-    subject
-    message_body
-    createdAt
-    updatedAt
-    __typename
-  }
-}
-` as GeneratedQuery<
-  APITypes.GetRIOCAlertDataQueryVariables,
-  APITypes.GetRIOCAlertDataQuery
->;
-export const listRIOCAlertData = /* GraphQL */ `query ListRIOCAlertData(
-  $filter: ModelRIOCAlertDataFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listRIOCAlertData(filter: $filter, limit: $limit, nextToken: $nextToken) {
-    items {
-      id
-      PublishTime
-      subject
-      message_body
-      createdAt
-      updatedAt
-      __typename
-    }
-    nextToken
-    __typename
-  }
-}
-` as GeneratedQuery<
-  APITypes.ListRIOCAlertDataQueryVariables,
-  APITypes.ListRIOCAlertDataQuery
->;
 export const eventsByTypeAndEventDate = /* GraphQL */ `query EventsByTypeAndEventDate(
   $type: String!
   $eventDate: ModelStringKeyConditionInput
