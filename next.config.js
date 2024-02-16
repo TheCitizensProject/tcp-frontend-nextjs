@@ -1,7 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   env: {
-    TRANSIT_API_URL: process.env.TRANSIT_API_URL
+    TRANSIT_API_URL: process.env.TRANSIT_API_URL,
+    FEEDBACK_API_URL: process.env.FEEDBACK_API_URL
   }
 }
 
