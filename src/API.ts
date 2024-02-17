@@ -95,6 +95,43 @@ export type DeleteEventInput = {
   id: string,
 };
 
+export type CreateRIOCAlertDataInput = {
+  id?: string | null,
+  publishTime?: string | null,
+  subject: string,
+  messageBody: string,
+};
+
+export type ModelRIOCAlertDataConditionInput = {
+  publishTime?: ModelStringInput | null,
+  subject?: ModelStringInput | null,
+  messageBody?: ModelStringInput | null,
+  and?: Array< ModelRIOCAlertDataConditionInput | null > | null,
+  or?: Array< ModelRIOCAlertDataConditionInput | null > | null,
+  not?: ModelRIOCAlertDataConditionInput | null,
+};
+
+export type RIOCAlertData = {
+  __typename: "RIOCAlertData",
+  id: string,
+  publishTime?: string | null,
+  subject: string,
+  messageBody: string,
+  createdAt: string,
+  updatedAt: string,
+};
+
+export type UpdateRIOCAlertDataInput = {
+  id: string,
+  publishTime?: string | null,
+  subject?: string | null,
+  messageBody?: string | null,
+};
+
+export type DeleteRIOCAlertDataInput = {
+  id: string,
+};
+
 export type ModelEventFilterInput = {
   id?: ModelIDInput | null,
   eventName?: ModelStringInput | null,
@@ -128,6 +165,22 @@ export type ModelIDInput = {
 export type ModelEventConnection = {
   __typename: "ModelEventConnection",
   items:  Array<Event | null >,
+  nextToken?: string | null,
+};
+
+export type ModelRIOCAlertDataFilterInput = {
+  id?: ModelIDInput | null,
+  publishTime?: ModelStringInput | null,
+  subject?: ModelStringInput | null,
+  messageBody?: ModelStringInput | null,
+  and?: Array< ModelRIOCAlertDataFilterInput | null > | null,
+  or?: Array< ModelRIOCAlertDataFilterInput | null > | null,
+  not?: ModelRIOCAlertDataFilterInput | null,
+};
+
+export type ModelRIOCAlertDataConnection = {
+  __typename: "ModelRIOCAlertDataConnection",
+  items:  Array<RIOCAlertData | null >,
   nextToken?: string | null,
 };
 
@@ -188,6 +241,15 @@ export type ModelSubscriptionStringInput = {
   beginsWith?: string | null,
   in?: Array< string | null > | null,
   notIn?: Array< string | null > | null,
+};
+
+export type ModelSubscriptionRIOCAlertDataFilterInput = {
+  id?: ModelSubscriptionIDInput | null,
+  publishTime?: ModelSubscriptionStringInput | null,
+  subject?: ModelSubscriptionStringInput | null,
+  messageBody?: ModelSubscriptionStringInput | null,
+  and?: Array< ModelSubscriptionRIOCAlertDataFilterInput | null > | null,
+  or?: Array< ModelSubscriptionRIOCAlertDataFilterInput | null > | null,
 };
 
 export type CreateEventMutationVariables = {
@@ -253,6 +315,57 @@ export type DeleteEventMutation = {
   } | null,
 };
 
+export type CreateRIOCAlertDataMutationVariables = {
+  input: CreateRIOCAlertDataInput,
+  condition?: ModelRIOCAlertDataConditionInput | null,
+};
+
+export type CreateRIOCAlertDataMutation = {
+  createRIOCAlertData?:  {
+    __typename: "RIOCAlertData",
+    id: string,
+    publishTime?: string | null,
+    subject: string,
+    messageBody: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type UpdateRIOCAlertDataMutationVariables = {
+  input: UpdateRIOCAlertDataInput,
+  condition?: ModelRIOCAlertDataConditionInput | null,
+};
+
+export type UpdateRIOCAlertDataMutation = {
+  updateRIOCAlertData?:  {
+    __typename: "RIOCAlertData",
+    id: string,
+    publishTime?: string | null,
+    subject: string,
+    messageBody: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type DeleteRIOCAlertDataMutationVariables = {
+  input: DeleteRIOCAlertDataInput,
+  condition?: ModelRIOCAlertDataConditionInput | null,
+};
+
+export type DeleteRIOCAlertDataMutation = {
+  deleteRIOCAlertData?:  {
+    __typename: "RIOCAlertData",
+    id: string,
+    publishTime?: string | null,
+    subject: string,
+    messageBody: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
 export type GetEventQueryVariables = {
   id: string,
 };
@@ -292,6 +405,44 @@ export type ListEventsQuery = {
       eventDescription: string,
       eventImage: string,
       type: string,
+      createdAt: string,
+      updatedAt: string,
+    } | null >,
+    nextToken?: string | null,
+  } | null,
+};
+
+export type GetRIOCAlertDataQueryVariables = {
+  id: string,
+};
+
+export type GetRIOCAlertDataQuery = {
+  getRIOCAlertData?:  {
+    __typename: "RIOCAlertData",
+    id: string,
+    publishTime?: string | null,
+    subject: string,
+    messageBody: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type ListRIOCAlertDataQueryVariables = {
+  filter?: ModelRIOCAlertDataFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListRIOCAlertDataQuery = {
+  listRIOCAlertData?:  {
+    __typename: "ModelRIOCAlertDataConnection",
+    items:  Array< {
+      __typename: "RIOCAlertData",
+      id: string,
+      publishTime?: string | null,
+      subject: string,
+      messageBody: string,
       createdAt: string,
       updatedAt: string,
     } | null >,
@@ -383,6 +534,54 @@ export type OnDeleteEventSubscription = {
     eventDescription: string,
     eventImage: string,
     type: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnCreateRIOCAlertDataSubscriptionVariables = {
+  filter?: ModelSubscriptionRIOCAlertDataFilterInput | null,
+};
+
+export type OnCreateRIOCAlertDataSubscription = {
+  onCreateRIOCAlertData?:  {
+    __typename: "RIOCAlertData",
+    id: string,
+    publishTime?: string | null,
+    subject: string,
+    messageBody: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnUpdateRIOCAlertDataSubscriptionVariables = {
+  filter?: ModelSubscriptionRIOCAlertDataFilterInput | null,
+};
+
+export type OnUpdateRIOCAlertDataSubscription = {
+  onUpdateRIOCAlertData?:  {
+    __typename: "RIOCAlertData",
+    id: string,
+    publishTime?: string | null,
+    subject: string,
+    messageBody: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnDeleteRIOCAlertDataSubscriptionVariables = {
+  filter?: ModelSubscriptionRIOCAlertDataFilterInput | null,
+};
+
+export type OnDeleteRIOCAlertDataSubscription = {
+  onDeleteRIOCAlertData?:  {
+    __typename: "RIOCAlertData",
+    id: string,
+    publishTime?: string | null,
+    subject: string,
+    messageBody: string,
     createdAt: string,
     updatedAt: string,
   } | null,
