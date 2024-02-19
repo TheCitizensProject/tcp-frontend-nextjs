@@ -1,44 +1,55 @@
-import { ReactNode } from "react";
-import EventComponent, { EventType } from "./component/EventComponent";
-import { events } from "./data/events";
+import { Fragment } from "react";
+import moment from "moment";
+import { Event } from "@/API";
+import amplifyServerClient from "@/app/utils/amplify-server-client";
+import generateNewYorkTime from "@/app/utils/generate-ny-time";
+import EventComponent from "./component/EventComponent";
+import { eventsByTypeAndEventDate } from "@/graphql/queries";
 
-const Page = () => {
-  const mappedArray = (array: EventType[]) => {
-    const map = new Map<string, EventType[]>();
-    for (let event of array) {
-      if (map.has(event.eventDate.toDateString())) {
-        const events = map.get(event.eventDate.toDateString());
-        events?.push(event);
-        map.set(event.eventDate.toDateString(), events as EventType[]);
-      } else {
-        map.set(event.eventDate.toDateString(), [event]);
-      }
-    }
-    return map;
-  };
-  const sortedEvents = mappedArray(
-    events.sort((a: EventType, b: EventType) => {
-      if (a.eventDate > b.eventDate) {
-        return 1;
-      } else {
-        return -1;
-      }
+const Page = async () => {
+  const events = await amplifyServerClient
+    .graphql({
+      query: eventsByTypeAndEventDate,
+      variables: {
+        type: "Event",
+        eventDate: {
+          ge: generateNewYorkTime().format("yyyy-MM-DD"),
+        },
+      },
     })
+    .then((response) => response.data.eventsByTypeAndEventDate.items);
+
+  const eventsByEventDate = Object.entries(
+    events.reduce((acc, event) => {
+      const eventDate = event.eventDate;
+      if (!acc[eventDate]) {
+        acc[eventDate] = [];
+      }
+      acc[eventDate].push(event);
+      return acc;
+    }, {} as { [key: string]: Event[] })
+  ).sort((e1, e2) => new Date(e1[0]).getTime() - new Date(e2[0]).getTime());
+
+  return (
+    <div>
+      {eventsByEventDate.map(([date, events]) => {
+        const eventDate = moment(date);
+        return (
+          <div key={date}>
+            <div className="py-2 px-2 bg-stone-200 font-semibold">
+              {eventDate.isSame(moment(), "date") ? "Today" : eventDate.format("dddd, MMM Do, YYYY")}
+            </div>
+            {events.map((event, index) => (
+              <Fragment key={event.eventName + event.eventDate}>
+                {index != 0 && <div className="border border-1 w-full" />}
+                <EventComponent event={event} />
+              </Fragment>
+            ))}
+          </div>
+        );
+      })}
+    </div>
   );
-  const nodes: ReactNode[] = [];
-  sortedEvents.forEach((eves, id) => {
-    nodes.push(
-      <div>
-        <div className="py-2 px-2 bg-stone-200 font-semibold">
-          {id === new Date().toDateString() ? "Today" : id}
-        </div>
-        {eves.map((ev) => (
-          <EventComponent event={ev} />
-        ))}
-      </div>
-    );
-  });
-  return <div>{nodes.map((n) => n)}</div>;
 };
 
 export default Page;

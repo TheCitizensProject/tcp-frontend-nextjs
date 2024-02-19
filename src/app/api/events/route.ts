@@ -4,18 +4,18 @@ import { ModelSortDirection } from "@/API";
 import { taskSchema } from "@/app/api/events/schemas";
 import amplifyServerClient from "@/app/utils/amplify-server-client";
 import extractAndConvertEventDateToISOString from "@/app/utils/extract-and-convert-event-datetime-to-iso-string.ts";
+import generateNewYorkTime from "@/app/utils/generate-ny-time";
 import { createEvent } from "@/graphql/mutations";
 import { eventsByTypeAndEventDate, listEvents } from "@/graphql/queries";
 
 // GET endpoint: retrieve all events on/after the request date
 export const GET = async () => {
-  const [isoDate] = new Date().toISOString().split("T"); // default iso-formatted date to search
   const result = await amplifyServerClient.graphql({
     query: eventsByTypeAndEventDate,
     variables: {
       type: "Event",
       eventDate: {
-        ge: isoDate,
+        ge: generateNewYorkTime().format("yyyy-MM-DD"),
       },
       sortDirection: ModelSortDirection.ASC,
     },

@@ -1,45 +1,46 @@
 "use client";
+
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { IoIosArrowForward } from "react-icons/io";
+import { Event } from "@/API";
 
-export type EventType = {
-  id: number;
-  eventDate: Date;
-  title: string;
-  img: string;
-  description: string;
-};
+interface Props {
+  event: Event;
+}
 
-export default function EventComponent({ event }: { event: EventType }) {
+export default function EventComponent({ event }: Props) {
   const router = useRouter();
   return (
     <div
-      className="p-4"
+      className="p-4 flex flex-row space-x-2"
       onClick={() => {
         router.push(`/events/${event.id}`);
       }}
     >
-      <h1 className="font-bold text-xl text-center">{event.title}</h1>
-      <div className="flex items-start gap-4">
-        <Image
-          alt={event.description}
-          src={event.img}
-          width={50}
-          height={50}
-          className="w-2/12 grow rounded-full max-h-12"
-        />
-        <div className="w-10/12 grow flex items-center justify-between">
-          {event.description}
-        </div>
-        <div className="w-1/12">
-          <IoIosArrowForward
-            className="w-8 h-8"
-            onClick={() => {
-              router.push(`/events/${event.id}`);
-            }}
+      <div>
+        <div className="w-16 h-16 rounded-full overflow-hidden">
+          <Image
+            alt={event.eventDescription}
+            src={event.eventImage}
+            width={0}
+            height={0}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className="object-cover w-full h-full"
           />
         </div>
+      </div>
+      <div className="space-y-2 w-full">
+        <h1 className="font-bold text-lg leading-6">{event.eventName}</h1>
+        <p className="line-clamp-4">{event.eventDescription}</p>
+      </div>
+      <div className="m-auto">
+        <IoIosArrowForward
+          className="w-8 h-8"
+          onClick={() => {
+            router.push(`/events/${event.id}`);
+          }}
+        />
       </div>
     </div>
   );
