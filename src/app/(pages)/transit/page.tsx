@@ -5,28 +5,18 @@ import Tram from "./component/Tram";
 import TransitHeader from "./component/TransitHeader";
 import revalidateTransitData from "@/app/actions/revalidateTransitData";
 import RevalidatorHOC from "@/app/component/Revalidator";
+import { TransitDataType } from "@/app/utils/global-types";
 
 /**
  * Happy path works. 
- * Needs to handle error path.
+ * Error paths:
+ *   - Ferry is handled by api call.
+ *   - There is a catch all error page in case API call fails.
+ * 
+ * TODO:
+ *   - Need to replicate for Tram and Trains?
  */
 
-type TransitTimeDataType = Array<string | number>;
-export type TransitDataType = {
-  error: unknown,
-  data: {
-    data: {
-      ferry_times: TransitTimeDataType[],
-      both_directions: TransitTimeDataType[],
-      tram_times: TransitTimeDataType[],
-    },
-    detail: "Not Found",
-  }[],
-}
-
-export type TransitProps = {
-  transitData: TransitDataType
-}
 const fetchTransitData = async () => {
   try {
     const urls = [

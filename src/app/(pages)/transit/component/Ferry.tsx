@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import TransitCard from "./TransitCard";
-import { TransitProps } from "../page";
+import { TransitProps, TransitTimeDataType } from "../../../utils/global-types";
 
 function Ferry({ transitData }: TransitProps) {
   const { data, error } = transitData;
@@ -11,18 +11,26 @@ function Ferry({ transitData }: TransitProps) {
 
     This interface is responsible for displaying all ferry times by querying
     the MTA server side endpoints.
-
-    TODO: 
-      - Handle error path. 
-        - Use the deconstructed object item from transitData.
     */
 
   return (
     <>
-      {data[0]?.data?.ferry_times.map((items: any) => (
-        <li key={items[1] + items[3]}>
+      {data[0]?.data?.ferry_times_static 
+      ? data[0]?.data?.ferry_times_static.map((items: TransitTimeDataType) => (
+        <li key={items[1] + '' + items[3]}>
           {ferryError && <p>Error: {ferryError}</p> }
-          <TransitCard time={items[3]} direction={items[1]} train="ferry" />
+          <TransitCard 
+            time={items[3] as number} 
+            direction={items[1] as string} 
+            train="ferry" 
+            alertLink="https://www.ferry.nyc/service-alerts/"
+          />
+        </li>
+      ))
+      : data[0]?.data?.ferry_times.map((items: TransitTimeDataType) => (
+        <li key={items[1] + '' + items[3]}>
+          {ferryError && <p>Error: {ferryError}</p> }
+          <TransitCard time={items[3] as number} direction={items[1] as string} train="ferry" />
         </li>
       ))}
     </>

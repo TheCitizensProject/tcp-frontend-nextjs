@@ -1,7 +1,15 @@
 import Image from "next/image";
 import React from "react";
+import { TbAlertTriangle } from "react-icons/tb";
 
-function TransitCard({ train, time, direction }: any) {
+export type TransitCardProps = {
+  train: string;
+  time: number | string;
+  direction: string;
+  alertLink?: string;
+};
+
+function TransitCard({ train, time, direction, alertLink }: TransitCardProps) {
   /*
     The Train Card Module.
 
@@ -35,6 +43,12 @@ function TransitCard({ train, time, direction }: any) {
         </div>
         <div className="ml-4">
           <p className="font-bold">{direction}</p>
+          {alertLink && (
+            <a href={alertLink} target="_blank" className="flex flex-row items-center text-sm text-[#980513] hover:bg-[#FADEE3]/[0.50] transition-colors rounded-md px-1 w-fit -ml-1">
+              <TbAlertTriangle className="mr-1" />
+              Service Alerts
+            </a>
+          )}
         </div>
       </div>
       <div>
