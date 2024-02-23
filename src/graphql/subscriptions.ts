@@ -8,7 +8,8 @@ type GeneratedSubscription<InputType, OutputType> = string & {
   __generatedSubscriptionOutput: OutputType;
 };
 
-export const onCreateEvent = /* GraphQL */ `subscription OnCreateEvent($filter: ModelSubscriptionEventFilterInput) {
+export const onCreateEvent =
+  /* GraphQL */ `subscription OnCreateEvent($filter: ModelSubscriptionEventFilterInput) {
   onCreateEvent(filter: $filter) {
     id
     eventName
@@ -24,10 +25,11 @@ export const onCreateEvent = /* GraphQL */ `subscription OnCreateEvent($filter: 
   }
 }
 ` as GeneratedSubscription<
-  APITypes.OnCreateEventSubscriptionVariables,
-  APITypes.OnCreateEventSubscription
->;
-export const onUpdateEvent = /* GraphQL */ `subscription OnUpdateEvent($filter: ModelSubscriptionEventFilterInput) {
+    APITypes.OnCreateEventSubscriptionVariables,
+    APITypes.OnCreateEventSubscription
+  >;
+export const onUpdateEvent =
+  /* GraphQL */ `subscription OnUpdateEvent($filter: ModelSubscriptionEventFilterInput) {
   onUpdateEvent(filter: $filter) {
     id
     eventName
@@ -43,10 +45,11 @@ export const onUpdateEvent = /* GraphQL */ `subscription OnUpdateEvent($filter: 
   }
 }
 ` as GeneratedSubscription<
-  APITypes.OnUpdateEventSubscriptionVariables,
-  APITypes.OnUpdateEventSubscription
->;
-export const onDeleteEvent = /* GraphQL */ `subscription OnDeleteEvent($filter: ModelSubscriptionEventFilterInput) {
+    APITypes.OnUpdateEventSubscriptionVariables,
+    APITypes.OnUpdateEventSubscription
+  >;
+export const onDeleteEvent =
+  /* GraphQL */ `subscription OnDeleteEvent($filter: ModelSubscriptionEventFilterInput) {
   onDeleteEvent(filter: $filter) {
     id
     eventName
@@ -62,10 +65,11 @@ export const onDeleteEvent = /* GraphQL */ `subscription OnDeleteEvent($filter: 
   }
 }
 ` as GeneratedSubscription<
-  APITypes.OnDeleteEventSubscriptionVariables,
-  APITypes.OnDeleteEventSubscription
->;
-export const onCreateRIOCAlertData = /* GraphQL */ `subscription OnCreateRIOCAlertData(
+    APITypes.OnDeleteEventSubscriptionVariables,
+    APITypes.OnDeleteEventSubscription
+  >;
+export const onCreateRIOCAlertData =
+  /* GraphQL */ `subscription OnCreateRIOCAlertData(
   $filter: ModelSubscriptionRIOCAlertDataFilterInput
 ) {
   onCreateRIOCAlertData(filter: $filter) {
@@ -79,10 +83,11 @@ export const onCreateRIOCAlertData = /* GraphQL */ `subscription OnCreateRIOCAle
   }
 }
 ` as GeneratedSubscription<
-  APITypes.OnCreateRIOCAlertDataSubscriptionVariables,
-  APITypes.OnCreateRIOCAlertDataSubscription
->;
-export const onUpdateRIOCAlertData = /* GraphQL */ `subscription OnUpdateRIOCAlertData(
+    APITypes.OnCreateRIOCAlertDataSubscriptionVariables,
+    APITypes.OnCreateRIOCAlertDataSubscription
+  >;
+export const onUpdateRIOCAlertData =
+  /* GraphQL */ `subscription OnUpdateRIOCAlertData(
   $filter: ModelSubscriptionRIOCAlertDataFilterInput
 ) {
   onUpdateRIOCAlertData(filter: $filter) {
@@ -96,10 +101,11 @@ export const onUpdateRIOCAlertData = /* GraphQL */ `subscription OnUpdateRIOCAle
   }
 }
 ` as GeneratedSubscription<
-  APITypes.OnUpdateRIOCAlertDataSubscriptionVariables,
-  APITypes.OnUpdateRIOCAlertDataSubscription
->;
-export const onDeleteRIOCAlertData = /* GraphQL */ `subscription OnDeleteRIOCAlertData(
+    APITypes.OnUpdateRIOCAlertDataSubscriptionVariables,
+    APITypes.OnUpdateRIOCAlertDataSubscription
+  >;
+export const onDeleteRIOCAlertData =
+  /* GraphQL */ `subscription OnDeleteRIOCAlertData(
   $filter: ModelSubscriptionRIOCAlertDataFilterInput
 ) {
   onDeleteRIOCAlertData(filter: $filter) {
@@ -113,6 +119,82 @@ export const onDeleteRIOCAlertData = /* GraphQL */ `subscription OnDeleteRIOCAle
   }
 }
 ` as GeneratedSubscription<
-  APITypes.OnDeleteRIOCAlertDataSubscriptionVariables,
-  APITypes.OnDeleteRIOCAlertDataSubscription
->;
+    APITypes.OnDeleteRIOCAlertDataSubscriptionVariables,
+    APITypes.OnDeleteRIOCAlertDataSubscription
+  >;
+
+export const onCreateFeedbackinfo =
+  /* GraphQL */ `subscription OnCreateFeedbackinfo(
+  $filter: ModelSubscriptionFeedbackinfoFilterInput
+) {
+  onCreateFeedbackinfo(filter: $filter) {
+    id
+    emailID
+    overall
+    businessConsumers
+    publicSafety
+    transportation
+    cultureRecreation
+    trashRecycling
+    environment
+    sidewalksStreetsHighways
+    noise
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedSubscription<
+    APITypes.OnCreateFeedbackinfoSubscriptionVariables,
+    APITypes.OnCreateFeedbackinfoSubscription
+  >;
+export const onUpdateFeedbackinfo =
+  /* GraphQL */ `subscription OnUpdateFeedbackinfo(
+  $filter: ModelSubscriptionFeedbackinfoFilterInput
+) {
+  onUpdateFeedbackinfo(filter: $filter) {
+    id
+    emailID
+    overall
+    businessConsumers
+    publicSafety
+    transportation
+    cultureRecreation
+    trashRecycling
+    environment
+    sidewalksStreetsHighways
+    noise
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedSubscription<
+    APITypes.OnUpdateFeedbackinfoSubscriptionVariables,
+    APITypes.OnUpdateFeedbackinfoSubscription
+  >;
+export const onDeleteFeedbackinfo =
+  /* GraphQL */ `subscription OnDeleteFeedbackinfo(
+  $filter: ModelSubscriptionFeedbackinfoFilterInput
+) {
+  onDeleteFeedbackinfo(filter: $filter) {
+    id
+    emailID
+    overall
+    businessConsumers
+    publicSafety
+    transportation
+    cultureRecreation
+    trashRecycling
+    environment
+    sidewalksStreetsHighways
+    noise
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedSubscription<
+    APITypes.OnDeleteFeedbackinfoSubscriptionVariables,
+    APITypes.OnDeleteFeedbackinfoSubscription
+  >;

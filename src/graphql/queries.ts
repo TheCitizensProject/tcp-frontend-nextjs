@@ -51,7 +51,8 @@ export const listEvents = /* GraphQL */ `query ListEvents(
   APITypes.ListEventsQueryVariables,
   APITypes.ListEventsQuery
 >;
-export const getRIOCAlertData = /* GraphQL */ `query GetRIOCAlertData($id: ID!) {
+export const getRIOCAlertData =
+  /* GraphQL */ `query GetRIOCAlertData($id: ID!) {
   getRIOCAlertData(id: $id) {
     id
     publishTime
@@ -63,9 +64,9 @@ export const getRIOCAlertData = /* GraphQL */ `query GetRIOCAlertData($id: ID!) 
   }
 }
 ` as GeneratedQuery<
-  APITypes.GetRIOCAlertDataQueryVariables,
-  APITypes.GetRIOCAlertDataQuery
->;
+    APITypes.GetRIOCAlertDataQueryVariables,
+    APITypes.GetRIOCAlertDataQuery
+  >;
 export const listRIOCAlertData = /* GraphQL */ `query ListRIOCAlertData(
   $filter: ModelRIOCAlertDataFilterInput
   $limit: Int
@@ -89,7 +90,62 @@ export const listRIOCAlertData = /* GraphQL */ `query ListRIOCAlertData(
   APITypes.ListRIOCAlertDataQueryVariables,
   APITypes.ListRIOCAlertDataQuery
 >;
-export const eventsByTypeAndEventDate = /* GraphQL */ `query EventsByTypeAndEventDate(
+
+export const getFeedbackinfo = /* GraphQL */ `query GetFeedbackinfo($id: ID!) {
+  getFeedbackinfo(id: $id) {
+    id
+    emailID
+    overall
+    businessConsumers
+    publicSafety
+    transportation
+    cultureRecreation
+    trashRecycling
+    environment
+    sidewalksStreetsHighways
+    noise
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedQuery<
+  APITypes.GetFeedbackinfoQueryVariables,
+  APITypes.GetFeedbackinfoQuery
+>;
+export const listFeedbackinfos = /* GraphQL */ `query ListFeedbackinfos(
+  $filter: ModelFeedbackinfoFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listFeedbackinfos(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      emailID
+      overall
+      businessConsumers
+      publicSafety
+      transportation
+      cultureRecreation
+      trashRecycling
+      environment
+      sidewalksStreetsHighways
+      noise
+      createdAt
+      updatedAt
+      __typename
+    }
+    nextToken
+    __typename
+  }
+}
+` as GeneratedQuery<
+  APITypes.ListFeedbackinfosQueryVariables,
+  APITypes.ListFeedbackinfosQuery
+>;
+
+export const eventsByTypeAndEventDate =
+  /* GraphQL */ `query EventsByTypeAndEventDate(
   $type: String!
   $eventDate: ModelStringKeyConditionInput
   $sortDirection: ModelSortDirection
@@ -123,6 +179,6 @@ export const eventsByTypeAndEventDate = /* GraphQL */ `query EventsByTypeAndEven
   }
 }
 ` as GeneratedQuery<
-  APITypes.EventsByTypeAndEventDateQueryVariables,
-  APITypes.EventsByTypeAndEventDateQuery
->;
+    APITypes.EventsByTypeAndEventDateQueryVariables,
+    APITypes.EventsByTypeAndEventDateQuery
+  >;
