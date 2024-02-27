@@ -31,7 +31,7 @@ export default function EventComponent({ event }: Props) {
         </div>
       </div>
       <div className="space-y-2 w-full">
-        <h1 className="font-bold text-lg leading-6">{event.eventName}</h1>
+        <h2 className="font-bold text-lg leading-6">{event.eventName}</h2>
         <p className="line-clamp-4">{event.eventDescription}</p>
       </div>
       <div className="m-auto">

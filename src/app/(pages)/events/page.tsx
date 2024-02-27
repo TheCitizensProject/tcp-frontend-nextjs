@@ -39,12 +39,14 @@ const Page = async () => {
             <div className="py-2 px-2 bg-stone-200 font-semibold">
               {eventDate.isSame(moment(), "date") ? "Today" : eventDate.format("dddd, MMM Do, YYYY")}
             </div>
-            {events.map((event, index) => (
-              <Fragment key={event.eventName + event.eventDate}>
-                {index != 0 && <div className="border border-1 w-full" />}
-                <EventComponent event={event} />
-              </Fragment>
-            ))}
+            <ul>
+              {events.map((event, index) => (
+                <li key={event.eventName + event.eventDate}>
+                  {index != 0 && <div className="border border-1 w-full" />}
+                  <EventComponent event={event} />
+                </li>
+              ))}
+            </ul>
           </div>
         );
       })}

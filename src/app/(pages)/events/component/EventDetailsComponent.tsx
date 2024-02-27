@@ -26,7 +26,7 @@ export default async function EventDetailsComponent({ id }: Props) {
   return (
     <div className="space-y-4">
       <div className="px-4">
-        <p className="text-xl font-semibold">{event.eventName}</p>
+        <h2 className="text-xl font-semibold">{event.eventName}</h2>
       </div>
       <div className="border border-1" />
       <div className="px-4 space-y-4">
@@ -41,12 +41,12 @@ export default async function EventDetailsComponent({ id }: Props) {
           />
         </div>
         <div>
-          <p className="text-lg font-semibold">Description</p>
-          <p>{event.eventDescription}</p>
-        </div>
-        <div>
           <p className="text-lg font-semibold">Date</p>
           <p>{event.eventDatetimeRaw}</p>
+        </div>
+        <div>
+          <p className="text-lg font-semibold">Description</p>
+          <p>{event.eventDescription}</p>
         </div>
         <div>
           <p className="text-lg font-semibold">Location</p>
