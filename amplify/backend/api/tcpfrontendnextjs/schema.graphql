@@ -11,18 +11,12 @@ type Event
   type: String! @index(name: "typeByDate", sortKeyFields: ["eventDate"])
 }
 
-<<<<<<< HEAD
 type RIOCAlertData @model @auth(rules: [{ allow: public }]){
-=======
-type RIOCAlertData @model @auth(rules: [{ allow: public }]) {
->>>>>>> 3202be5 (feedback data insertion through amplify graphQL)
   id: ID!
   publishTime: String
   subject: String!
   messageBody: String!
-<<<<<<< HEAD
 }
-=======
 }
 
 type feedbackinfo
@@ -40,4 +34,3 @@ type feedbackinfo
   sidewalksStreetsHighways: Int
   noise: Int
 }
->>>>>>> 3202be5 (feedback data insertion through amplify graphQL)
