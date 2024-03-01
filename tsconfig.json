@@ -7,9 +7,9 @@
     "strict": true,
     "noEmit": true,
     "esModuleInterop": true,
-    "module": "nodenext",
-    "moduleResolution": "nodenext",
-    // "module": "esnext",
+    // "module": "NodeNext",
+    // "moduleResolution": "NodeNext",
+    "module": "esnext",
     // "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -25,8 +25,8 @@
       "@/*": ["./src/*"],
       "@/components/*": ["components/*"],
       "@/pages/*": ["pages/*"]
-    }
-    //"moduleResolution": "node"
+    },
+    "moduleResolution": "node"
   },
   "include": [
     "next-env.d.ts",

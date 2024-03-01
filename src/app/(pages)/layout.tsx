@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Header from "../component/Header";
-import PageHeader from "./component/PageHeader";
 import { Amplify } from "aws-amplify";
 import config from "@/amplifyconfiguration.json";
-import { AppContextHOC } from "../component/ContextHOCs/AppContext";
-import getInitialRiocAlerts from "../actions/getInitialRiocAlerts";
-import { RIOCAlert } from "../utils/global-types";
+import TransitHeader from "./component/transit/TransitHeader";
+import PageHeader from "./component/PageHeader";
+// import getInitialRiocAlerts from "../actions/getInitialRiocAlerts";
+// import { AppContextHOC } from "../component/ContextHOCs/AppContext";
+// import { RIOCAlert } from "../utils/global-types";
 
 Amplify.configure(config, {
   ssr: true,
@@ -24,14 +25,17 @@ export default async function PageLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { riocAlerts: RIOCData } = await getInitialRiocAlerts();
+  // const { riocAlerts: RIOCData } = await getInitialRiocAlerts();
   
   return (
-    <AppContextHOC appData={{ alerts: RIOCData?.data?.listRIOCAlertData?.items as RIOCAlert[]}}>
+    <>
+    {/* <AppContextHOC appData={{ alerts: RIOCData?.data?.listRIOCAlertData?.items as RIOCAlert[]}}> */}
       <Header />
+      {/* <PageHeader/>
+      <TransitHeader/> */}
       <div id="top-page-alert"/>
-      <PageHeader />
       {children}
-    </AppContextHOC>
+    {/* </AppContextHOC> */}
+    </>
   );
 }

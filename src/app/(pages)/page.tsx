@@ -1,8 +1,8 @@
 import React from "react";
-import Ferry from "./component/Ferry";
-import Trains from "./component/Trains";
-import Tram from "./component/Tram";
-import TransitHeader from "./component/TransitHeader";
+import Ferry from "./component/transit/Ferry";
+import Trains from "./component/transit/Trains";
+import Tram from "./component/transit/Tram";
+import TransitHeader from "./component/transit/TransitHeader";
 import revalidateTransitData from "@/app/actions/revalidateTransitData";
 import RevalidatorHOC from "@/app/component/Revalidator";
 import { TransitDataType } from "@/app/utils/global-types";
@@ -41,12 +41,14 @@ const Page = async () => {
   const transitData = await fetchTransitData();
   
   return (
-    <div className="mx-4 mt-10">
+    <div>
+      <div className="my-2 border-y border-[#E8E8E8] px-4 py-2">
+        <h2 className="font-bold text-lg uppercase">Transit</h2>
+      </div>
       <RevalidatorHOC revalidateFuncion={revalidateTransitData}>
-        <TransitHeader />
         <ul>
-          <Ferry transitData={transitData as TransitDataType}/>
           <Trains transitData={transitData as TransitDataType}/>
+          <Ferry transitData={transitData as TransitDataType}/>
           <Tram transitData={transitData as TransitDataType}/>
         </ul>
       </RevalidatorHOC>

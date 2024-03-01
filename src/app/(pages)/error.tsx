@@ -1,7 +1,7 @@
 'use client';
  
 import { useEffect } from 'react'
-import TransitHeader from './component/TransitHeader'
+import TransitHeader from './component/transit/TransitHeader'
 import { BiError } from "react-icons/bi";
  
 export default function Error({
