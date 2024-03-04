@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import TransitCard from "./TransitCard";
-import { TransitProps } from "../page";
+import { TransitProps, TransitTimeDataType } from "../../../utils/global-types";
 
 function Trains({ transitData }: TransitProps) {
   const { data: trainData, error } = transitData;
@@ -27,13 +27,13 @@ function Trains({ transitData }: TransitProps) {
 
   return (
     <>
-      {trainData[1]?.data?.both_directions.map((items: any) => (
-        <li key={items[0] + items[1]}>
+      {trainData[1]?.data?.both_directions.map((items: TransitTimeDataType) => (
+        <li key={items[0] + '' + items[1]}>
           {trainError && <p>Error: {trainError}</p> }
           <TransitCard
-            train={items[0]}
-            time={items[1]}
-            direction={items[2]}
+            train={items[0] as string}
+            time={items[1] as number}
+            direction={items[2] as string}
           />
         </li>
       ))}

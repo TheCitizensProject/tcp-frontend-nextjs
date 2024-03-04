@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { ProjectTitle } from "../component/Header";
+import Header from "../app/component/Header";
 import { Amplify } from "aws-amplify";
 import config from "@/amplifyconfiguration.json";
 
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <ProjectTitle />
+      <Header />
       {children}
     </>
   );
