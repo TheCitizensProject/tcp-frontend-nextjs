@@ -26,7 +26,7 @@ const fetchTransitData = async () => {
     ];
 
     const responses = await Promise.all(
-      urls.map(url => fetch(url, { next: { tags: ['transit-data'] }}))
+      urls.map(url => fetch(url, { next: { tags: ['transit-data'] }, cache: 'no-store' }))
     );
     const data = await Promise.all(responses.map(response => response.json()));
 
