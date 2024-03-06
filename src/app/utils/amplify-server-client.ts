@@ -3,9 +3,9 @@ import { generateServerClientUsingCookies } from "@aws-amplify/adapter-nextjs/ap
 
 // import config from "@/amplifyconfiguration.json";
 
-// const amplifyServerClient = generateServerClientUsingCookies({
-//   config,
-//   cookies,
-// });
+const amplifyServerClient = generateServerClientUsingCookies({
+  config: {},
+  cookies,
+});
 
-// export default amplifyServerClient;
+export default amplifyServerClient;
