@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Header from "../app/component/Header";
-import { Amplify } from "aws-amplify";
-import config from "@/amplifyconfiguration.json";
+// import { Amplify } from "aws-amplify";
+// import config from "@/amplifyconfiguration.json";
 
-Amplify.configure(config, {
-  ssr: true,
-});
+// Amplify.configure(config, {
+//   ssr: true,
+// });
 
 const inter = Inter({ subsets: ["latin"] });
 

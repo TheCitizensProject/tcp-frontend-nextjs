@@ -7,9 +7,9 @@ import React, {
   useContext, 
   useState 
 } from 'react';
-import config from '../../../amplifyconfiguration.json';
-import { Amplify } from 'aws-amplify';
-Amplify.configure(config);
+// import config from '../../../amplifyconfiguration.json';
+// import { Amplify } from 'aws-amplify';
+// Amplify.configure(config);
 
 type AppContextType = {
   getRiocAlerts: () => RIOCAlert[];
