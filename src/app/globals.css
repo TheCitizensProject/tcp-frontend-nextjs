@@ -25,6 +25,9 @@
     )
     rgb(var(--background-start-rgb));
 } */
+body {
+  @apply font-poppins;
+}
 
 @layer components {
 
