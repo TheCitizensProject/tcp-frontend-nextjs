@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Header from "../component/Header";
-// import { Amplify } from "aws-amplify";
-// import config from "@/amplifyconfiguration.json";
+import { Amplify } from "aws-amplify";
+import config from "@/amplifyconfiguration.json";
 import TransitHeader from "./component/transit/TransitHeader";
 import PageHeader from "./component/PageHeader";
 // import getInitialRiocAlerts from "../actions/getInitialRiocAlerts";
 // import { AppContextHOC } from "../component/ContextHOCs/AppContext";
 // import { RIOCAlert } from "../utils/global-types";
 
-// Amplify.configure(config, {
-//   ssr: true,
-// });
+Amplify.configure(config, {
+  ssr: true,
+});
 
 const inter = Inter({ subsets: ["latin"] });
 
