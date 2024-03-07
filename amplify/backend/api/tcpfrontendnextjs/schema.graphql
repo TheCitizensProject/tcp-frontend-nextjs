@@ -1,4 +1,6 @@
-type Event @model @auth(rules: [{ allow: public, operations: [create, read] }]) {
+type Event
+  @model
+  @auth(rules: [{ allow: public, operations: [create, read] }]) {
   id: ID!
   eventName: String!
   eventDatetimeRaw: String!
@@ -14,4 +16,21 @@ type RIOCAlertData @model @auth(rules: [{ allow: public }]){
   publishTime: String
   subject: String!
   messageBody: String!
+}
+}
+
+type feedbackinfo
+  @model
+  @auth(rules: [{ allow: public, operations: [create] }]) {
+  id: ID!
+  emailID: String
+  overall: Int
+  businessConsumers: Int
+  publicSafety: Int
+  transportation: Int
+  cultureRecreation: Int
+  trashRecycling: Int
+  environment: Int
+  sidewalksStreetsHighways: Int
+  noise: Int
 }

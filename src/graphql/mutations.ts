@@ -128,3 +128,79 @@ export const deleteRIOCAlertData = /* GraphQL */ `mutation DeleteRIOCAlertData(
   APITypes.DeleteRIOCAlertDataMutationVariables,
   APITypes.DeleteRIOCAlertDataMutation
 >;
+
+export const createFeedbackinfo = /* GraphQL */ `mutation CreateFeedbackinfo(
+  $input: CreateFeedbackinfoInput!
+  $condition: ModelFeedbackinfoConditionInput
+) {
+  createFeedbackinfo(input: $input, condition: $condition) {
+    id
+    emailID
+    overall
+    businessConsumers
+    publicSafety
+    transportation
+    cultureRecreation
+    trashRecycling
+    environment
+    sidewalksStreetsHighways
+    noise
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.CreateFeedbackinfoMutationVariables,
+  APITypes.CreateFeedbackinfoMutation
+>;
+export const updateFeedbackinfo = /* GraphQL */ `mutation UpdateFeedbackinfo(
+  $input: UpdateFeedbackinfoInput!
+  $condition: ModelFeedbackinfoConditionInput
+) {
+  updateFeedbackinfo(input: $input, condition: $condition) {
+    id
+    emailID
+    overall
+    businessConsumers
+    publicSafety
+    transportation
+    cultureRecreation
+    trashRecycling
+    environment
+    sidewalksStreetsHighways
+    noise
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.UpdateFeedbackinfoMutationVariables,
+  APITypes.UpdateFeedbackinfoMutation
+>;
+export const deleteFeedbackinfo = /* GraphQL */ `mutation DeleteFeedbackinfo(
+  $input: DeleteFeedbackinfoInput!
+  $condition: ModelFeedbackinfoConditionInput
+) {
+  deleteFeedbackinfo(input: $input, condition: $condition) {
+    id
+    emailID
+    overall
+    businessConsumers
+    publicSafety
+    transportation
+    cultureRecreation
+    trashRecycling
+    environment
+    sidewalksStreetsHighways
+    noise
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.DeleteFeedbackinfoMutationVariables,
+  APITypes.DeleteFeedbackinfoMutation
+>;
