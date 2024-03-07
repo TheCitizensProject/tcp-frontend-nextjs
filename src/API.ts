@@ -132,6 +132,83 @@ export type DeleteRIOCAlertDataInput = {
   id: string,
 };
 
+export type CreateFeedbackInput = {
+  id?: string | null,
+  emailID?: string | null,
+  overall?: number | null,
+  businessConsumers?: number | null,
+  publicSafety?: number | null,
+  transportation?: number | null,
+  cultureRecreation?: number | null,
+  trashRecycling?: number | null,
+  environment?: number | null,
+  sidewalksStreetsHighways?: number | null,
+  noise?: number | null,
+};
+
+export type ModelFeedbackConditionInput = {
+  emailID?: ModelStringInput | null,
+  overall?: ModelIntInput | null,
+  businessConsumers?: ModelIntInput | null,
+  publicSafety?: ModelIntInput | null,
+  transportation?: ModelIntInput | null,
+  cultureRecreation?: ModelIntInput | null,
+  trashRecycling?: ModelIntInput | null,
+  environment?: ModelIntInput | null,
+  sidewalksStreetsHighways?: ModelIntInput | null,
+  noise?: ModelIntInput | null,
+  and?: Array< ModelFeedbackConditionInput | null > | null,
+  or?: Array< ModelFeedbackConditionInput | null > | null,
+  not?: ModelFeedbackConditionInput | null,
+};
+
+export type ModelIntInput = {
+  ne?: number | null,
+  eq?: number | null,
+  le?: number | null,
+  lt?: number | null,
+  ge?: number | null,
+  gt?: number | null,
+  between?: Array< number | null > | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+};
+
+export type Feedback = {
+  __typename: "Feedback",
+  id: string,
+  emailID?: string | null,
+  overall?: number | null,
+  businessConsumers?: number | null,
+  publicSafety?: number | null,
+  transportation?: number | null,
+  cultureRecreation?: number | null,
+  trashRecycling?: number | null,
+  environment?: number | null,
+  sidewalksStreetsHighways?: number | null,
+  noise?: number | null,
+  createdAt: string,
+  updatedAt: string,
+};
+
+export type UpdateFeedbackInput = {
+  id: string,
+  emailID?: string | null,
+  overall?: number | null,
+  businessConsumers?: number | null,
+  publicSafety?: number | null,
+  transportation?: number | null,
+  cultureRecreation?: number | null,
+  trashRecycling?: number | null,
+  environment?: number | null,
+  sidewalksStreetsHighways?: number | null,
+  noise?: number | null,
+};
+
+export type DeleteFeedbackInput = {
+  id: string,
+};
+
 export type ModelEventFilterInput = {
   id?: ModelIDInput | null,
   eventName?: ModelStringInput | null,
@@ -181,6 +258,29 @@ export type ModelRIOCAlertDataFilterInput = {
 export type ModelRIOCAlertDataConnection = {
   __typename: "ModelRIOCAlertDataConnection",
   items:  Array<RIOCAlertData | null >,
+  nextToken?: string | null,
+};
+
+export type ModelFeedbackFilterInput = {
+  id?: ModelIDInput | null,
+  emailID?: ModelStringInput | null,
+  overall?: ModelIntInput | null,
+  businessConsumers?: ModelIntInput | null,
+  publicSafety?: ModelIntInput | null,
+  transportation?: ModelIntInput | null,
+  cultureRecreation?: ModelIntInput | null,
+  trashRecycling?: ModelIntInput | null,
+  environment?: ModelIntInput | null,
+  sidewalksStreetsHighways?: ModelIntInput | null,
+  noise?: ModelIntInput | null,
+  and?: Array< ModelFeedbackFilterInput | null > | null,
+  or?: Array< ModelFeedbackFilterInput | null > | null,
+  not?: ModelFeedbackFilterInput | null,
+};
+
+export type ModelFeedbackConnection = {
+  __typename: "ModelFeedbackConnection",
+  items:  Array<Feedback | null >,
   nextToken?: string | null,
 };
 
@@ -250,6 +350,34 @@ export type ModelSubscriptionRIOCAlertDataFilterInput = {
   messageBody?: ModelSubscriptionStringInput | null,
   and?: Array< ModelSubscriptionRIOCAlertDataFilterInput | null > | null,
   or?: Array< ModelSubscriptionRIOCAlertDataFilterInput | null > | null,
+};
+
+export type ModelSubscriptionFeedbackFilterInput = {
+  id?: ModelSubscriptionIDInput | null,
+  emailID?: ModelSubscriptionStringInput | null,
+  overall?: ModelSubscriptionIntInput | null,
+  businessConsumers?: ModelSubscriptionIntInput | null,
+  publicSafety?: ModelSubscriptionIntInput | null,
+  transportation?: ModelSubscriptionIntInput | null,
+  cultureRecreation?: ModelSubscriptionIntInput | null,
+  trashRecycling?: ModelSubscriptionIntInput | null,
+  environment?: ModelSubscriptionIntInput | null,
+  sidewalksStreetsHighways?: ModelSubscriptionIntInput | null,
+  noise?: ModelSubscriptionIntInput | null,
+  and?: Array< ModelSubscriptionFeedbackFilterInput | null > | null,
+  or?: Array< ModelSubscriptionFeedbackFilterInput | null > | null,
+};
+
+export type ModelSubscriptionIntInput = {
+  ne?: number | null,
+  eq?: number | null,
+  le?: number | null,
+  lt?: number | null,
+  ge?: number | null,
+  gt?: number | null,
+  between?: Array< number | null > | null,
+  in?: Array< number | null > | null,
+  notIn?: Array< number | null > | null,
 };
 
 export type CreateEventMutationVariables = {
@@ -366,6 +494,78 @@ export type DeleteRIOCAlertDataMutation = {
   } | null,
 };
 
+export type CreateFeedbackMutationVariables = {
+  input: CreateFeedbackInput,
+  condition?: ModelFeedbackConditionInput | null,
+};
+
+export type CreateFeedbackMutation = {
+  createFeedback?:  {
+    __typename: "Feedback",
+    id: string,
+    emailID?: string | null,
+    overall?: number | null,
+    businessConsumers?: number | null,
+    publicSafety?: number | null,
+    transportation?: number | null,
+    cultureRecreation?: number | null,
+    trashRecycling?: number | null,
+    environment?: number | null,
+    sidewalksStreetsHighways?: number | null,
+    noise?: number | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type UpdateFeedbackMutationVariables = {
+  input: UpdateFeedbackInput,
+  condition?: ModelFeedbackConditionInput | null,
+};
+
+export type UpdateFeedbackMutation = {
+  updateFeedback?:  {
+    __typename: "Feedback",
+    id: string,
+    emailID?: string | null,
+    overall?: number | null,
+    businessConsumers?: number | null,
+    publicSafety?: number | null,
+    transportation?: number | null,
+    cultureRecreation?: number | null,
+    trashRecycling?: number | null,
+    environment?: number | null,
+    sidewalksStreetsHighways?: number | null,
+    noise?: number | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type DeleteFeedbackMutationVariables = {
+  input: DeleteFeedbackInput,
+  condition?: ModelFeedbackConditionInput | null,
+};
+
+export type DeleteFeedbackMutation = {
+  deleteFeedback?:  {
+    __typename: "Feedback",
+    id: string,
+    emailID?: string | null,
+    overall?: number | null,
+    businessConsumers?: number | null,
+    publicSafety?: number | null,
+    transportation?: number | null,
+    cultureRecreation?: number | null,
+    trashRecycling?: number | null,
+    environment?: number | null,
+    sidewalksStreetsHighways?: number | null,
+    noise?: number | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
 export type GetEventQueryVariables = {
   id: string,
 };
@@ -443,6 +643,58 @@ export type ListRIOCAlertDataQuery = {
       publishTime?: string | null,
       subject: string,
       messageBody: string,
+      createdAt: string,
+      updatedAt: string,
+    } | null >,
+    nextToken?: string | null,
+  } | null,
+};
+
+export type GetFeedbackQueryVariables = {
+  id: string,
+};
+
+export type GetFeedbackQuery = {
+  getFeedback?:  {
+    __typename: "Feedback",
+    id: string,
+    emailID?: string | null,
+    overall?: number | null,
+    businessConsumers?: number | null,
+    publicSafety?: number | null,
+    transportation?: number | null,
+    cultureRecreation?: number | null,
+    trashRecycling?: number | null,
+    environment?: number | null,
+    sidewalksStreetsHighways?: number | null,
+    noise?: number | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type ListFeedbacksQueryVariables = {
+  filter?: ModelFeedbackFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListFeedbacksQuery = {
+  listFeedbacks?:  {
+    __typename: "ModelFeedbackConnection",
+    items:  Array< {
+      __typename: "Feedback",
+      id: string,
+      emailID?: string | null,
+      overall?: number | null,
+      businessConsumers?: number | null,
+      publicSafety?: number | null,
+      transportation?: number | null,
+      cultureRecreation?: number | null,
+      trashRecycling?: number | null,
+      environment?: number | null,
+      sidewalksStreetsHighways?: number | null,
+      noise?: number | null,
       createdAt: string,
       updatedAt: string,
     } | null >,
@@ -582,6 +834,75 @@ export type OnDeleteRIOCAlertDataSubscription = {
     publishTime?: string | null,
     subject: string,
     messageBody: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnCreateFeedbackSubscriptionVariables = {
+  filter?: ModelSubscriptionFeedbackFilterInput | null,
+};
+
+export type OnCreateFeedbackSubscription = {
+  onCreateFeedback?:  {
+    __typename: "Feedback",
+    id: string,
+    emailID?: string | null,
+    overall?: number | null,
+    businessConsumers?: number | null,
+    publicSafety?: number | null,
+    transportation?: number | null,
+    cultureRecreation?: number | null,
+    trashRecycling?: number | null,
+    environment?: number | null,
+    sidewalksStreetsHighways?: number | null,
+    noise?: number | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnUpdateFeedbackSubscriptionVariables = {
+  filter?: ModelSubscriptionFeedbackFilterInput | null,
+};
+
+export type OnUpdateFeedbackSubscription = {
+  onUpdateFeedback?:  {
+    __typename: "Feedback",
+    id: string,
+    emailID?: string | null,
+    overall?: number | null,
+    businessConsumers?: number | null,
+    publicSafety?: number | null,
+    transportation?: number | null,
+    cultureRecreation?: number | null,
+    trashRecycling?: number | null,
+    environment?: number | null,
+    sidewalksStreetsHighways?: number | null,
+    noise?: number | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnDeleteFeedbackSubscriptionVariables = {
+  filter?: ModelSubscriptionFeedbackFilterInput | null,
+};
+
+export type OnDeleteFeedbackSubscription = {
+  onDeleteFeedback?:  {
+    __typename: "Feedback",
+    id: string,
+    emailID?: string | null,
+    overall?: number | null,
+    businessConsumers?: number | null,
+    publicSafety?: number | null,
+    transportation?: number | null,
+    cultureRecreation?: number | null,
+    trashRecycling?: number | null,
+    environment?: number | null,
+    sidewalksStreetsHighways?: number | null,
+    noise?: number | null,
     createdAt: string,
     updatedAt: string,
   } | null,

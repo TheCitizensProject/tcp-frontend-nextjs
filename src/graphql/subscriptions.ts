@@ -116,3 +116,69 @@ export const onDeleteRIOCAlertData = /* GraphQL */ `subscription OnDeleteRIOCAle
   APITypes.OnDeleteRIOCAlertDataSubscriptionVariables,
   APITypes.OnDeleteRIOCAlertDataSubscription
 >;
+export const onCreateFeedback = /* GraphQL */ `subscription OnCreateFeedback($filter: ModelSubscriptionFeedbackFilterInput) {
+  onCreateFeedback(filter: $filter) {
+    id
+    emailID
+    overall
+    businessConsumers
+    publicSafety
+    transportation
+    cultureRecreation
+    trashRecycling
+    environment
+    sidewalksStreetsHighways
+    noise
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedSubscription<
+  APITypes.OnCreateFeedbackSubscriptionVariables,
+  APITypes.OnCreateFeedbackSubscription
+>;
+export const onUpdateFeedback = /* GraphQL */ `subscription OnUpdateFeedback($filter: ModelSubscriptionFeedbackFilterInput) {
+  onUpdateFeedback(filter: $filter) {
+    id
+    emailID
+    overall
+    businessConsumers
+    publicSafety
+    transportation
+    cultureRecreation
+    trashRecycling
+    environment
+    sidewalksStreetsHighways
+    noise
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedSubscription<
+  APITypes.OnUpdateFeedbackSubscriptionVariables,
+  APITypes.OnUpdateFeedbackSubscription
+>;
+export const onDeleteFeedback = /* GraphQL */ `subscription OnDeleteFeedback($filter: ModelSubscriptionFeedbackFilterInput) {
+  onDeleteFeedback(filter: $filter) {
+    id
+    emailID
+    overall
+    businessConsumers
+    publicSafety
+    transportation
+    cultureRecreation
+    trashRecycling
+    environment
+    sidewalksStreetsHighways
+    noise
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedSubscription<
+  APITypes.OnDeleteFeedbackSubscriptionVariables,
+  APITypes.OnDeleteFeedbackSubscription
+>;

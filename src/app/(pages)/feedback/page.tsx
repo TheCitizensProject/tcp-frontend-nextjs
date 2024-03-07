@@ -9,6 +9,13 @@ import { RiShieldStarLine } from "react-icons/ri";
 import Rating from "./components/Rating";
 import Divider from "./components/Divider";
 
+import { generateClient } from "aws-amplify/api";
+import { createFeedback } from "@/graphql/mutations";
+import { Amplify } from "aws-amplify";
+import config from "@/amplifyconfiguration.json";
+
+Amplify.configure(config);
+
 export type RatingCriteria = {
   overall: number;
   businessAndConsumers: number;
@@ -43,10 +50,43 @@ export default function page() {
   };
 
   // TODO: call API to submit data
-  const handleSubmit: MouseEventHandler<HTMLButtonElement> = (e) => {
+  // const handleSubmit: MouseEventHandler<HTMLButtonElement> = (e) => {
+  //   e.preventDefault();
+  //   console.log(ratings);
+  // };
+
+  async function handleSubmit(e: any) {
     e.preventDefault();
-    console.log(ratings);
-  };
+    const client = generateClient();
+    await client.graphql({
+      query: createFeedback,
+      variables: {
+        input: {
+          emailID: "testing_email@gmail.com", //To-Do: Take Dynamic email ids
+          overall: ratings["overall"],
+          businessConsumers: ratings["businessAndConsumers"],
+          publicSafety: ratings["publicSafety"],
+          transportation: ratings["transportation"],
+          cultureRecreation: ratings["transportation"],
+          trashRecycling: ratings["transportation"],
+          environment: ratings["transportation"],
+          sidewalksStreetsHighways: ratings["sidewalksStreetsHighways"],
+          noise: ratings["noise"],
+        },
+      },
+    });
+    setRatings({
+      overall: 0,
+      businessAndConsumers: 0,
+      publicSafety: 0,
+      transportation: 0,
+      cultureAndRecreation: 0,
+      trashAndRecycling: 0,
+      environment: 0,
+      sidewalksStreetsHighways: 0,
+      noise: 0,
+    });
+  }
 
   return (
     <form className="flex flex-col w-full space-y-4 mb-4">
@@ -122,7 +162,10 @@ export default function page() {
         handleNewRating={handleNewRating}
       />
       <Divider />
-      <button className="w-fit m-auto border-2 border-gray-600 px-4 py-1 rounded-full" onClick={handleSubmit}>
+      <button
+        className="w-fit m-auto border-2 border-gray-600 px-4 py-1 rounded-full"
+        onClick={handleSubmit}
+      >
         <p className="uppercase font-semibold">Submit</p>
       </button>
     </form>

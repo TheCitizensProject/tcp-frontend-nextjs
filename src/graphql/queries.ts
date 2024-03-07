@@ -89,6 +89,58 @@ export const listRIOCAlertData = /* GraphQL */ `query ListRIOCAlertData(
   APITypes.ListRIOCAlertDataQueryVariables,
   APITypes.ListRIOCAlertDataQuery
 >;
+export const getFeedback = /* GraphQL */ `query GetFeedback($id: ID!) {
+  getFeedback(id: $id) {
+    id
+    emailID
+    overall
+    businessConsumers
+    publicSafety
+    transportation
+    cultureRecreation
+    trashRecycling
+    environment
+    sidewalksStreetsHighways
+    noise
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedQuery<
+  APITypes.GetFeedbackQueryVariables,
+  APITypes.GetFeedbackQuery
+>;
+export const listFeedbacks = /* GraphQL */ `query ListFeedbacks(
+  $filter: ModelFeedbackFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listFeedbacks(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      emailID
+      overall
+      businessConsumers
+      publicSafety
+      transportation
+      cultureRecreation
+      trashRecycling
+      environment
+      sidewalksStreetsHighways
+      noise
+      createdAt
+      updatedAt
+      __typename
+    }
+    nextToken
+    __typename
+  }
+}
+` as GeneratedQuery<
+  APITypes.ListFeedbacksQueryVariables,
+  APITypes.ListFeedbacksQuery
+>;
 export const eventsByTypeAndEventDate = /* GraphQL */ `query EventsByTypeAndEventDate(
   $type: String!
   $eventDate: ModelStringKeyConditionInput
