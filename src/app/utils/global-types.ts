@@ -15,7 +15,7 @@ export type AppContextDataType = {
 export type TransitTimeDataType = (string | number)[];
 
 export type TransitDataType = {
-  error: unknown,
+  error?: unknown;
   data: {
     data: {
       ferry_times: TransitTimeDataType[],
@@ -24,7 +24,7 @@ export type TransitDataType = {
       tram_times: TransitTimeDataType[],
     },
     detail: "Not Found",
-  }[],
+  }[] | null;
 }
 
 export type TransitProps = {
