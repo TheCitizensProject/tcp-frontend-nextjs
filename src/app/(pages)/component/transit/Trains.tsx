@@ -5,7 +5,7 @@ import { TransitProps, TransitTimeDataType } from "../../../utils/global-types";
 
 function Trains({ transitData }: TransitProps) {
   const { data: trainData, error } = transitData;
-  const trainError = trainData[1].detail || null;
+  const trainError = trainData?.[1].detail || null;
   /*
     The Train Module.
 
@@ -27,7 +27,7 @@ function Trains({ transitData }: TransitProps) {
 
   return (
     <>
-      {trainData[1]?.data?.both_directions.map((items: TransitTimeDataType) => (
+      {trainData?.[1]?.data?.both_directions.map((items: TransitTimeDataType) => (
         <li key={items[0] + '' + items[1]}>
           {trainError && <p>Error: {trainError}</p> }
           <TransitCard
