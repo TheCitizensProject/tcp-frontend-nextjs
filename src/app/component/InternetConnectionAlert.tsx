@@ -3,7 +3,10 @@ import React from "react";
 import { Transition } from '@headlessui/react'
 import { BiError } from "react-icons/bi";
 
-export default function InternetConnectionAlert({ showAlert }: { showAlert: boolean }) {
+type ConnectionAlertProps = {
+  showAlert: boolean;
+}
+export default function InternetConnectionAlert({ showAlert }: ConnectionAlertProps) {
   
   return (
     <div 
@@ -19,12 +22,13 @@ export default function InternetConnectionAlert({ showAlert }: { showAlert: bool
         leave="transition duration-75 ease-out"
         leaveFrom="transform scale-100 opacity-100"
         leaveTo="transform scale-95 opacity-0"
+        data-testid="alert-transition-component"
       >
         <div 
           className="absolute w-full flex flex-row bg-red-500 items-center justify-center text-white py-2"
         >
           <BiError className="w-[25px] h-[25px] mr-2"/>
-          <p className="text-center">No internet connection</p>
+          <p className="text-center">Re-connecting...</p>
         </div>
       </Transition>
     </div>

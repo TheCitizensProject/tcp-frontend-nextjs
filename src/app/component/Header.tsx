@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function Header() {
   return (
     <div data-testid="headerComponent">
-      <Link href={"/"} className="flex mx-4 mt-4 max-sm:mr-0">
+      <Link href={"/"} className="flex mx-4 mt-4 max-sm:mr-0 mb-2">
         <Image
           data-testid="logo"
           src={"/favicon-32x32.png"}

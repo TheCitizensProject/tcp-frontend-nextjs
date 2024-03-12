@@ -8,7 +8,7 @@ const Page = async () => {
 
   return (
     <div>
-      <div className="my-2 border-y border-[#E8E8E8] px-4 py-2">
+      <div className="border-y border-[#E8E8E8] px-4 py-2">
         <h2 className="font-bold text-lg uppercase">Transit</h2>
       </div>
       <TransitPage _transitData={transitData as TransitDataType}/>
