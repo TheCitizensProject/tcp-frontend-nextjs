@@ -33,7 +33,7 @@ export default async function PageLayout({
       <Header />
       {/* <PageHeader/>
       <TransitHeader/> */}
-      <div id="top-page-alert"/>
+      <div id="top-page-alert" role="alert"/>
       {children}
     {/* </AppContextHOC> */}
     </>
