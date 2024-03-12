@@ -5,7 +5,7 @@ import { TransitProps, TransitTimeDataType } from "../../../utils/global-types";
 
 function Tram({ transitData }: TransitProps) {
   const { data: tramData, error } = transitData;
-  const tramError = tramData[2].detail || null;
+  const tramError = tramData?.[2].detail || null;
   /*
     The Train Module.
 
@@ -19,7 +19,7 @@ function Tram({ transitData }: TransitProps) {
 
   return (
     <>
-      {tramData[2].data.tram_times.map((items: TransitTimeDataType) => (
+      {tramData?.[2].data.tram_times.map((items: TransitTimeDataType) => (
         <li key={items[1] + '' + items[0]}>
           {tramError && <p>Error: {tramError}</p>}
           <TransitCard 
