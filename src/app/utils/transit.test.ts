@@ -31,7 +31,7 @@ describe('fetchTransitData', () => {
 
     expect(global.fetch).toHaveBeenCalledTimes(urls.length);
     urls.forEach((url) => {
-      expect(global.fetch).toHaveBeenCalledWith(url, { next: { revalidate: 30 } });
+      expect(global.fetch).toHaveBeenCalledWith(url, { cache: 'no-store' });
     });
     expect(promiseAllSpy).toHaveBeenCalledTimes(2);
     expect(result).toEqual({ data: [{ some: 'data' }, { some: 'data' }, { some: 'data' }], error: null });
