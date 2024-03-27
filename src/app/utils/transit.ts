@@ -7,7 +7,7 @@ export const fetchTransitData = async () => {
     ];
 
     const responses = await Promise.all(
-      urls.map(url => fetch(url, { next: { revalidate: 30 } }))
+      urls.map(url => fetch(url, { cache: "no-store" }))
     );
     const data = await Promise.all(responses.map(response => response.json()));
 

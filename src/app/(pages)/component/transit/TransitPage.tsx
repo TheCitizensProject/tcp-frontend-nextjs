@@ -14,11 +14,14 @@ const TransitPage = ({ _transitData }: { _transitData: TransitDataType}) => {
 
   useEffect(() => {
     if(!DOMloaded) setDOMloaded(true);
+  }, []);
+  
+  useEffect(() => {
     const fetchData = async (): Promise<TransitDataType> => {
       try {
         const response = await fetch(
           "/api/getTransitData",
-          { next: { revalidate: 30 } }
+          { cache: "no-store" }
         );
         const responseData = await response.json();
 
@@ -37,9 +40,9 @@ const TransitPage = ({ _transitData }: { _transitData: TransitDataType}) => {
     const intervalId = setInterval(() => {
       fetchData().then((data: TransitDataType) => {
         if(window.navigator.onLine) {
-          setShowAlert(() => false);
+          if(showAlert) setShowAlert(() => false);
         } else {
-          setShowAlert(() => true);
+          if(!showAlert) setShowAlert(() => true);
         }
 
         if(data.data === null) return setShowAlert(() => true);
@@ -47,12 +50,12 @@ const TransitPage = ({ _transitData }: { _transitData: TransitDataType}) => {
         if(showAlert) setShowAlert(() => false);
         setTransitData(data);
       });
-    }, 3000);
+    }, showAlert ? 3000 : 30000);
 
     return () => {
       clearInterval(intervalId);
     };
-  }, []);
+  }, [showAlert]);
 
   return (
     <ul>

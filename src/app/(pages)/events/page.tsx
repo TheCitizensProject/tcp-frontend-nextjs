@@ -17,7 +17,8 @@ const Page = async () => {
         },
       },
     })
-    .then((response) => response.data.eventsByTypeAndEventDate.items);
+    .then((response) => response.data.eventsByTypeAndEventDate.items)
+    .catch((error) => /* Amplify auth error is thrown. */ []);
 
   const eventsByEventDate = Object.entries(
     events.reduce((acc, event) => {
@@ -29,7 +30,7 @@ const Page = async () => {
       return acc;
     }, {} as { [key: string]: Event[] })
   ).sort((e1, e2) => new Date(e1[0]).getTime() - new Date(e2[0]).getTime());
-
+  
   return (
     <div>
       {eventsByEventDate.map(([date, events]) => {
